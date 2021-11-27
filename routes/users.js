@@ -7,6 +7,8 @@
 
 const express = require('express');
 const router  = express.Router();
+const homeController = require('../controllers/homeController')
+const cartController = require('../controllers/users/userCartController')
 
 module.exports = (db) => {
 
@@ -24,28 +26,13 @@ module.exports = (db) => {
   //     });
   // });
 
-  router.get('/', (req,res) => {
-    res.render("index")
-  })
+  router.get('/', homeController(db).home)
 
-  router.get('/register', (req, res)=> {
-    //write the logic for register user here
-    res.render("users/register")
-  })
+  router.get('/register', homeController(db).register)
 
-  // This is common login route for any user/admin
-  router.get('/login', (req, res)=> {
-    // write the logic for db here
-    res.render("login")
-  })
+  router.get('/login', homeController(db).login)
 
-  router.get("/cart", (req, res) => {
-    // write a logic for the cart here
-    res.render("users/cart")
-  })
-
-
-
+  router.get("/cart", cartController(db).cart)
 
   return router;
 };

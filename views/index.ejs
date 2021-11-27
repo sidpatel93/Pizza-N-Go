@@ -1,2 +1,13 @@
 
   <h1> This is the home page of the pizza shop. </h1>
+  
+  
+  <div>
+    <% for (let item of fooditems) { %> 
+        <p> <%=item.name%></p>
+        <p> <%=item.description%></p>
+        <p> <%=item.price%></p>
+        <p>=================================</li>
+    <% } %>
+    </div>
+
