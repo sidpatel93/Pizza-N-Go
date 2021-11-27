@@ -1,14 +1,3 @@
--- Users table seeds here (Example)
-INSERT INTO users (name,email_address,password,phone_number,isAdmin) VALUES ('user', 'admin@gmail.com','password',12082188536,true);
-
-INSERT INTO users (name,email_address,password,phone_number) VALUES ('Sally', 'sally@gmail.com','password',141611234567);
-
-INSERT INTO users (name,email_address,password,phone_number) VALUES ('John', 'john@gmail.com','password',14169876543);
-
-INSERT INTO users (name,email_address,password,phone_number) VALUES ('Frank', 'frank@gmail.com','password',14169871234);
-
-INSERT INTO users (name,email_address,password,phone_number) VALUES ('Anthony', 'anthony@gmail.com','password',14164561234);
-
 INSERT INTO menuItems (name,price,photo_url,description,category)
 VALUES ('Cheese Pizza', 9.99,'https://kitchenatics.com/wp-content/uploads/2020/09/Cheese-pizza-1.jpg','Classic. How could you go wrong with a cheese pizzs from Pizza N Go. Extra pizza mozzarella, cheese, and more cheese. Did I mention the cheese?','pizza');
 
@@ -72,38 +61,3 @@ VALUES ('Sprite Can', 1.99,'https://media.istockphoto.com/photos/sprite-can-on-w
 
 INSERT INTO menuItems (name,price,photo_url,description,category)
 VALUES ('Fanta Can', 1.99,'https://media.istockphoto.com/photos/fanta-orange-can-picture-id509533066?k=20&m=509533066&s=612x612&w=0&h=5iOUHa9b5FATEWquo4In543pZ91pJ7D9B4gMdV4eYX8=','A can of classic Fanta Orange pop.','drinks');
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (2,'In Progress',false);
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (3,'In Progress',false);
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (4,'New',false);
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (5,'New',false);
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (2,'Complete',true);
-
-INSERT INTO orders (user_id,status,isComplete)
-VALUES (2,'Complete',true);
-
-INSERT INTO orderItems (menuItem_id,order_id)
-VALUES (1,1);
-
-INSERT INTO orderItems (menuItem_id,order_id)
-VALUES (2,2);
-
-INSERT INTO orderItems (menuItem_id,order_id)
-VALUES (3,3);
-
-INSERT INTO orderItems (menuItem_id,order_id)
-VALUES (4,4);
-
-INSERT INTO orderItems (menuItem_id,order_id)
-VALUES (5,5);
-
-
