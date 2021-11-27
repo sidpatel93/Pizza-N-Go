@@ -9,17 +9,43 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+
+
+  // router.get("", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const users = data.rows;
+  //       res.json({ users });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
+  router.get('/', (req,res) => {
+    res.render("index")
+  })
+
+  router.get('/register', (req, res)=> {
+    //write the logic for register user here
+    res.render("users/register")
+  })
+
+  // This is common login route for any user/admin
+  router.get('/login', (req, res)=> {
+    // write the logic for db here
+    res.render("login")
+  })
+
+  router.get("/cart", (req, res) => {
+    // write a logic for the cart here
+    res.render("users/cart")
+  })
+
+
+
+
   return router;
 };

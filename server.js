@@ -8,7 +8,7 @@ const express = require("express");
 const path = require('path')
 const app = express();
 const morgan = require("morgan");
-
+const ejsLayouts= require('express-ejs-layouts');
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -21,6 +21,7 @@ db.connect();
 app.use(morgan("dev"));
 
 app.set('views', path.join(__dirname, './views'));
+app.use(ejsLayouts);
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
@@ -37,11 +38,9 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
-const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", adminRoutes(db));
+app.use("/", usersRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
