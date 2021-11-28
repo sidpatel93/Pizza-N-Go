@@ -23,7 +23,11 @@
   </div>
   <% } %>
   <hr>
-  <p> Total Price: <%= session.cart.totalPrice %></p>
+  <p> Sub Total: <%= session.cart.totalPrice %></p>
+  <p>Tax: [14.975%]:</p>
+  <p>Total: </p>
+
+  <form action="/cart" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
 </div>
 
-<% } %> 
+<% } %>
