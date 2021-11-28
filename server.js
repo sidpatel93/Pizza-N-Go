@@ -38,6 +38,12 @@ app.use(session({
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
 
+// Global middleware to get the session content from each request
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+})
 
 //Setup views and ejs template
 app.set('views', path.join(__dirname, './views'));
