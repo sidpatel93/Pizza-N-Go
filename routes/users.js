@@ -7,19 +7,34 @@
 
 const express = require('express');
 const router  = express.Router();
+const homeController = require('../controllers/homeController')
+const cartController = require('../controllers/users/userCartController')
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+
+
+  // router.get("", (req, res) => {
+  //   db.query(`SELECT * FROM users;`)
+  //     .then(data => {
+  //       const users = data.rows;
+  //       res.json({ users });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
+  router.get('/', homeController(db).home)
+
+  router.get('/register', homeController(db).register)
+
+  router.get('/login', homeController(db).login)
+
+  router.get("/cart", cartController(db).cart)
+
+  router.post("/cart-update", cartController(db).updateCart)
+
   return router;
 };
