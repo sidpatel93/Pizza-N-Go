@@ -1,4 +1,13 @@
 -- Users table seeds here (Example)
-INSERT INTO users (name, email, password, phone_number) VALUES ('Alice', 'alice@gmail.com', 'pass123', '456123987');
-INSERT INTO users (name, email, password, phone_number) VALUES ('Kira', 'kira@email.com', 'kira456', '741852963');
-INSERT INTO users (name, email, password, phone_number, is_admin) VALUES ('admin', 'admin@gmail.com', 'pass123', '452163987', TRUE);
+INSERT INTO users (name,email_address,password,phone_number,isAdmin) VALUES ('user', 'admin@gmail.com','password',12082188536,true);
+
+INSERT INTO users (name,email_address,password,phone_number) VALUES ('Sally', 'sally@gmail.com','password',141611234567);
+
+INSERT INTO users (name,email_address,password,phone_number) VALUES ('John', 'john@gmail.com','password',14169876543);
+
+INSERT INTO users (name,email_address,password,phone_number) VALUES ('Frank', 'frank@gmail.com','password',14169871234);
+
+INSERT INTO users (name,email_address,password,phone_number) VALUES ('Anthony', 'anthony@gmail.com','password',14164561234);
+
+
+
