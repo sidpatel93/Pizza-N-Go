@@ -34,5 +34,7 @@ module.exports = (db) => {
 
   router.get("/cart", cartController(db).cart)
 
+  router.post("/cart-update", cartController(db).updateCart)
+
   return router;
 };

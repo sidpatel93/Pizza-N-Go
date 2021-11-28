@@ -1,4 +1,4 @@
-INSERT INTO menu_items (name, description, price) VALUES ('Veggie Pizza', 'Awesome veggie pizza with premium toppings', 10);
-INSERT INTO menu_items (name, description, price) VALUES ('Cheeze Pizza', 'Italian Cheese pizza with five blend of cheese', 8);
-INSERT INTO menu_items (name, description, price) VALUES ('Soda', 'This is just regular soda', 2);
-INSERT INTO menu_items (name, description, price) VALUES ('Wine', 'Fine Red Wine - 1950s Chatau', 10);
+INSERT INTO menu_items (name, description, image_url ,price) VALUES ('Veggie Pizza', 'Awesome veggie pizza with premium toppings', 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=781&q=80',10);
+INSERT INTO menu_items (name, description, image_url, price) VALUES ('Cheeze Pizza', 'Italian Cheese pizza with five blend of cheese', 'https://images.unsplash.com/photo-1594007654729-407eedc4be65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=728&q=80', 8);
+INSERT INTO menu_items (name, description, image_url, price) VALUES ('Soda', 'This is just regular soda', 'https://media.istockphoto.com/photos/soft-drink-on-wooden-table-and-men-sitting-picture-id698051792',2);
+INSERT INTO menu_items (name, description, image_url, price) VALUES ('Wine', 'Fine Red Wine - 1950s Chatau', 'https://media.istockphoto.com/photos/celebration-picture-id160836693',10);

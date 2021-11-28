@@ -9,17 +9,39 @@ const path = require('path')
 const app = express();
 const morgan = require("morgan");
 const ejsLayouts= require('express-ejs-layouts');
+const session = require('express-session')
+const pgSession = require('connect-pg-simple')(session)
+
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+const sessionStore = new pgSession({
+  pool: db,
+})
+
+// session config to store the user session like user credentials, cart etc.
+app.use(session({
+  store: sessionStore,
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialize: false,
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: 10000
+  }
+}))
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
 
+
+//Setup views and ejs template
 app.set('views', path.join(__dirname, './views'));
 app.use(ejsLayouts);
 app.set("view engine", "ejs");
@@ -35,18 +57,17 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(express.json());
 
-// Separated Routes for each Resource
+// Separated Routes
 const usersRoutes = require("./routes/users");
-
 // Mount all resource routes
 app.use("/", usersRoutes(db));
-// Note: mount other resources here, using the same pattern above
+
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
 //Home page of the app. This will show the all the menu and available food options
 app.get("/", (req, res) => {
   res.render("index");

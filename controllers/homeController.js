@@ -7,7 +7,6 @@ function homeController(db) {
         db.query(`SELECT * FROM menu_items;`)
             .then(data => {
               const fooditems = data.rows;
-              console.log(fooditems)
               res.render("index", {fooditems})
             })
             .catch(err => {

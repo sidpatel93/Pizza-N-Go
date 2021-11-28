@@ -1,13 +1,16 @@
 
   <h1> This is the home page of the pizza shop. </h1>
   
-  
-  <div>
-    <% for (let item of fooditems) { %> 
-        <p> <%=item.name%></p>
-        <p> <%=item.description%></p>
-        <p> <%=item.price%></p>
-        <p>=================================</li>
-    <% } %>
-    </div>
 
+    <% for (let fooditem of fooditems) { %> 
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src=<%=fooditem.image_url %> alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%=fooditem.name%></h5>
+        <p class="card-text"><%=fooditem.description%></p>
+        <br>
+        <p class="card-text">Price: $<%=fooditem.price%></p>
+        <a data-fooditem="<%= JSON.stringify(fooditem) %> " href="#" class="btn btn-primary add-to-cart">+ Add</a>
+      </div>
+    </div>
+    <% } %>
