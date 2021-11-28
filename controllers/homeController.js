@@ -1,4 +1,5 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 function homeController(db) {
 
@@ -68,8 +69,26 @@ function homeController(db) {
       res.render("login")
      },
 
-     loginUser: (req, res) => {
+     loginUser: (req, res, next) => {
+        passport.authenticate('local', (err, user, info)=>{
+          if(err){
+            console.log("error:",info.message)
+            return next(err)
+          }
+          if(!user){
+            console.log("error:", info.message)
+            return res.redirect("/login")
+          }
 
+          req.login(user, (err) => {
+            if(err){
+              console.log("error:",info.message)
+              return next(err)
+            }
+            return res.redirect("/")
+          })
+
+        })(req, res, next)
      },
 
   }
