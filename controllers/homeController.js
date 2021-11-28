@@ -23,38 +23,52 @@ function homeController(db) {
 
      registerUser: async (req, res) => {
         //get the user data from form submit request
-        const {name, email, phoneNumber, password} = req.body;
-        console.log(name, email, phoneNumber, password)
-        // Check if all the fields are filled
-        if(!name || !phoneNumber || !password || ! email){
-          //put logic if the user has not filled all the fields
-          return res.redirect("users/register")
-        }
+        console.log(typeof(req.body))
+        const {name, email, phone, password} = req.body
+        console.log(name, email, phone, password)
+      //   db.query(`SELECT email
+      //   FROM users
+      //   where email=$1;`, [email])
+      //  .then( data => {
+      //     console.log(data.rows)
+      //  })
+      //  .catch((err)=> {
+      //    console.log(err)
+      //    console.log("failed to get the email from the db")
+      //    //return res.redirect("/register")
+      //  })
+      //   // Check if all the fields are filled
+      //   if(!name || !phone || !password || ! email){
+      //     //put logic if the user has not filled all the fields
+      //     return res.redirect("/register")
+      //   }
         // Check if the user already exist in the system
-        db.query(`select users.email as email form users where users.email=${email};`)
-        .then((res)=> {
-          if(res.rows[0]){
-            // show error to user that they are already register here.
-            console.log(res.rows[0])
-            console.log("user is already registered")
-            return res.redirect("users/register");
-          }
-        })
-        .catch((err)=> {
-          console.log(err)
-          console.log("failed to get the email from the db")
-          return res.render("users/register")
-        })
+        // db.query(`SELECT email
+        //  FROM users
+        //  where email=$1`, [email])
+        // .then( data => {
+        //   if(data.rows){
+        //     // show error to user that they are already register here.
+        //     console.log(res.rows)
+        //     console.log("user is already registered")
+        //     return res.redirect("/");
+        //   }
+        // })
+        // .catch((err)=> {
+        //   console.log(err)
+        //   console.log("failed to get the email from the db")
+        //   return res.redirect("/register")
+        // })
         // If above conditions fail, then save this user data in the database
         const hashedPassword = await bcrypt.hash(password, 8)
-        db.query(`INSERT INTO users (name, email, password, phone_number) VALUES ($1, $2, $3, $4);`, [name, email, hashedPassword, phoneNumber])
+        db.query(`INSERT INTO users (name, email, password, phone_number) VALUES ($1, $2, $3, $4);`, [name, email, hashedPassword, phone])
         .then((res)=> {
           // Once the user is registered, redirect to home page and log them in.
-          return res.redirect("index")
+          return res.status(200).redirect("/")
         })
         .catch((err) => {
           console.log("Failed to insert new user in db")
-          return res.redirect("users/register")
+          return res.redirect("/register")
         })
      },
 
