@@ -4,7 +4,7 @@ function homeController(db) {
 
   return {
       home: (req, res) => {
-        db.query(`SELECT * FROM menu_items;`)
+        db.query(`SELECT * FROM menuItems;`)
             .then(data => {
               const fooditems = data.rows;
               res.render("index", {fooditems})

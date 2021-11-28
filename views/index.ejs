@@ -4,12 +4,13 @@
 
     <% for (let fooditem of fooditems) { %> 
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src=<%=fooditem.image_url %> alt="Card image cap">
+      <img class="card-img-top" src=<%=fooditem.photo_url %> alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title"><%=fooditem.name%></h5>
         <p class="card-text"><%=fooditem.description%></p>
         <br>
         <p class="card-text">Price: $<%=fooditem.price%></p>
+        <p class="card-text">Price: $<%=fooditem.category%></p>
         <a data-fooditem="<%= JSON.stringify(fooditem) %> " href="#" class="btn btn-primary add-to-cart">+ Add</a>
       </div>
     </div>
