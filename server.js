@@ -27,11 +27,9 @@ app.use(session({
   store: sessionStore,
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialize: false,
   cookie: {
     secure: false,
-    httpOnly: true,
-    maxAge: 10000
+    maxAge: 3600000
   }
 }))
 

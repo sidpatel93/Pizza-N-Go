@@ -19,11 +19,21 @@ function cartController(db) {
             }
           }
           let cart = req.session.cart;
-          console.log(req.body)
+          
       // If the cart already exist then update the cart.
           //check if the added item exist in the cart, it not then add it 
-          if(cart.foodItems) {
-
+          if(!cart.foodItems[req.body.id]) {
+              cart.foodItems[req.body.id] = {
+                item: req.body,
+                qty: 1
+              },
+              cart.totalOty +=  1,
+              cart.totalPrice += req.body.price
+          } else {
+            // If item already exist them update the qty, totalQty, totalprice
+            cart.foodItems[req.body.id][qty] += 1 
+            cart.totalOty +=  1,
+            cart.totalPrice += req.body.price
           }
      }
   }
