@@ -29,8 +29,10 @@ module.exports = (db) => {
   router.get('/', homeController(db).home)
 
   router.get('/register', homeController(db).register)
+  router.post('/register', homeController(db).registerUser)
 
   router.get('/login', homeController(db).login)
+  router.post('/login', homeController(db).loginUser)
 
   router.get("/cart", cartController(db).cart)
 
