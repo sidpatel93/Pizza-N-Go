@@ -1,0 +1,19 @@
+
+
+<% for(let order of pendingOrders) { %>
+
+  <div class="card">
+    <h5 class="card-header">Order Number: <%= order.id %></h5>
+    <h5 class="card-header">Customer Name: <%= order.username %></h5>
+    <h5 class="card-header">Customer Phone: <%= order.userphone %></h5>
+    <h5 class="card-header">Order placed at: <%= moment(order.order_time).format('LLLL') %></h5>
+    <div class="card-body">
+      <ul>
+        <% for((items) of Object.values(order.items)) { %> 
+      <li><p class="card-title">Food Item: <%= items.item.name %></p></li>
+      <% } %> 
+    </ul>
+    </div>
+  </div>
+  
+  <% } %> 

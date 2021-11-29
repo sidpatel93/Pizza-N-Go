@@ -8,31 +8,19 @@
 const express = require('express');
 const router  = express.Router();
 const homeController = require('../controllers/homeController')
-const cartController = require('../controllers/users/userCartController')
-const isLoggedIn = require('../middlewares/isLoggedIn')
+const cartController = require('../controllers/users/userCartController');
+const adminController = require('../controllers/admin/adminController')
+const isLoggedIn = require('../middlewares/isLoggedIn');
+const isNotLoggedIn = require('../middlewares/isNotLoggedIn')
 
 module.exports = (db) => {
 
-
-  // router.get("", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then(data => {
-  //       const users = data.rows;
-  //       res.json({ users });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
-
   router.get('/', homeController(db).home)
 
-  router.get('/register', isLoggedIn,homeController(db).register)
+  router.get('/register', isNotLoggedIn,homeController(db).register)
   router.post('/register', homeController(db).registerUser)
 
-  router.get('/login', isLoggedIn,homeController(db).login)
+  router.get('/login', isNotLoggedIn,homeController(db).login)
   router.post('/login', homeController(db).loginUser)
 
   router.post('/logout', homeController(db).logout)
@@ -41,8 +29,13 @@ module.exports = (db) => {
 
   router.post("/cart-update", cartController(db).updateCart)
 
-  router.get("/user/orders", homeController(db).orders)
-  router.post("/orders", cartController(db).placeOrder)
+  // Users orders routes
+  router.get("/user/orders", isLoggedIn, homeController(db).orders)
+  router.post("/orders", isLoggedIn, cartController(db).placeOrder)
+
+  //Admin route
+  router.get("/admin/orders", isLoggedIn, adminController(db).orders)
+
 
   return router;
 };
