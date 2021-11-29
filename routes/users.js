@@ -41,5 +41,8 @@ module.exports = (db) => {
 
   router.post("/cart-update", cartController(db).updateCart)
 
+  router.get("/user/orders", homeController(db).orders)
+  router.post("/orders", cartController(db).placeOrder)
+
   return router;
 };

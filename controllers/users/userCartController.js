@@ -37,6 +37,30 @@ function cartController(db) {
           }
 
           res.json({data: 'sending response back for updated cart.'})
+     },
+
+     placeOrder: (req, res) => {
+        // create the order to store in database
+        // order details are stored in the session.
+        const customerId = req.user.id;
+        const items = req.session.cart.foodItems;
+        
+        //store this order in the database.
+        db.query(`INSERT INTO test_orders (user_id, items)
+        VALUES ($1, $2)`, [customerId, items])
+        .then(data => {
+          // if the order placed successfuly then clear the cart and 
+          // redirect to customers order page.
+          // We might need to add the message notification logic here
+          delete req.session.cart;
+          return res.redirect('/user/orders')
+        })
+        .catch((err) => {
+          //if the error occur, then redirect to cart
+          console.log("can not insert order in db", err)
+          return res.redirect('/cart')
+        })
+
      }
   }
 

@@ -26,4 +26,14 @@
   <p> Total Price: <%= session.cart.totalPrice %></p>
 </div>
 
+
+  <% if(user) { %>
+    <form action="/orders" method="POST" id="placeOrder">
+    <a onclick="document.getElementById('placeOrder').submit()" class="btn btn-primary" href="#" role="button">Check out</a>
+    </form>
+  <% } else { %>
+    <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
+  <% } %> 
+</form>
+
 <% } %> 
