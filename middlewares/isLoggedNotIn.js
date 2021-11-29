@@ -1,4 +1,4 @@
-const isLoggedIn = (req, res, next) => {
+const isLoggedNotIn = (req, res, next) => {
   
   //check if the user is loggedIn. isAuthenticated() function is coming from 
   // passport library. if the user is logged in then send the request further
@@ -9,4 +9,4 @@ const isLoggedIn = (req, res, next) => {
   return res.redirect('/')
 }
 
-module.exports = isLoggedIn
+module.exports = isLoggedNotIn

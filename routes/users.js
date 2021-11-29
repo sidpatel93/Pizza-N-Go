@@ -9,7 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const homeController = require('../controllers/homeController')
 const cartController = require('../controllers/users/userCartController')
-const isLoggedIn = require('../middlewares/isLoggedIn')
+const isLoggedNotIn = require('../middlewares/isLoggedNotIn')
 const adminController = require('../controllers/admin/adminController');
 
 
@@ -17,10 +17,10 @@ module.exports = (db) => {
 
   router.get('/', homeController(db).home)
 
-  router.get('/register', isLoggedIn,homeController(db).register)
+  router.get('/register', isLoggedNotIn,homeController(db).register)
   router.post('/register', homeController(db).registerUser)
 
-  router.get('/login', isLoggedIn,homeController(db).login)
+  router.get('/login', isLoggedNotIn,homeController(db).login)
   router.post('/login', homeController(db).loginUser)
 
   router.post('/logout', homeController(db).logout)
