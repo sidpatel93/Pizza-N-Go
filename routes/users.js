@@ -10,6 +10,7 @@ const router  = express.Router();
 const homeController = require('../controllers/homeController')
 const cartController = require('../controllers/users/userCartController')
 const isLoggedNotIn = require('../middlewares/isLoggedNotIn')
+const isLoggedIn = require('../middlewares/isLoggedIn')
 const adminController = require('../controllers/admin/adminController');
 
 
@@ -29,11 +30,11 @@ module.exports = (db) => {
 
   router.post("/cart-update", cartController(db).updateCart)
 
-  router.post('/cart',cartController(db).sendOrder)
+  router.post('/cart', isLoggedIn, cartController(db).sendOrder)
 
-  router.get('/order', adminController(db).get)
+  router.get('/order', isLoggedIn, adminController(db).get)
   
-  router.post('/order', adminController(db).post)
+  router.post('/order', isLoggedIn, adminController(db).post)
 
   return router;
 };
