@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const homeController = require('../controllers/homeController')
 const cartController = require('../controllers/users/userCartController')
+const isLoggedIn = require('../middlewares/isLoggedIn')
 
 module.exports = (db) => {
 
@@ -28,11 +29,13 @@ module.exports = (db) => {
 
   router.get('/', homeController(db).home)
 
-  router.get('/register', homeController(db).register)
+  router.get('/register', isLoggedIn,homeController(db).register)
   router.post('/register', homeController(db).registerUser)
 
-  router.get('/login', homeController(db).login)
+  router.get('/login', isLoggedIn,homeController(db).login)
   router.post('/login', homeController(db).loginUser)
+
+  router.post('/logout', homeController(db).logout)
 
   router.get("/cart", cartController(db).cart)
 

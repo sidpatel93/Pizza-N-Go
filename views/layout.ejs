@@ -31,7 +31,9 @@
 
     <% if(user) { %>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
+        <form id="logOut" action="/logout" method="POST">
+          <a onclick="document.getElementById('logOut').submit()" class="nav-link" href="#">Logout</a>
+        </form>
       </li>
     <% } else { %>
 

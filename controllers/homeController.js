@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
+
 function homeController(db) {
 
   return {
@@ -90,6 +91,12 @@ function homeController(db) {
 
         })(req, res, next)
      },
+
+     logout: (req, res) => {
+       // .logout is from passport library
+       req.logout()
+       return res.redirect('/login')
+     }
 
   }
 
