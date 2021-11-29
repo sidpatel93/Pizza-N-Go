@@ -1,5 +1,5 @@
 -- Users table seeds here (Example)
-INSERT INTO users (name,email_address,password,phone_number,isAdmin) VALUES ('user', 'admin@gmail.com','password',12082188536,true);
+INSERT INTO users (name,email_address,password,phone_number,isAdmin) VALUES ('user', 'admin@gmail.com','$2a$10$OR.g2rZX1sM/hdORPZX/ieZ5YiIQX/kHKWuJeqXNNpbo8OZuh1Pfm',12082188536,true);
 
 INSERT INTO users (name,email_address,password,phone_number) VALUES ('Sally', 'sally@gmail.com','password',141611234567);
 

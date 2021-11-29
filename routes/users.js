@@ -32,9 +32,9 @@ module.exports = (db) => {
 
   router.post('/cart', isLoggedIn, cartController(db).sendOrder)
 
-  router.get('/order', isLoggedIn, adminController(db).get)
+  router.get('/admin/orders', isLoggedIn, adminController(db).get)
   
-  router.post('/order', isLoggedIn, adminController(db).post)
+  router.post('/admin/orders', isLoggedIn, adminController(db).post)
 
   return router;
 };
