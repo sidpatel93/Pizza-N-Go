@@ -32,7 +32,7 @@ module.exports = (db) => {
   router.post('/cart',cartController(db).sendOrder)
 
   router.get('/order', adminController(db).get)
-
+  
   router.post('/order', adminController(db).post)
 
   return router;
