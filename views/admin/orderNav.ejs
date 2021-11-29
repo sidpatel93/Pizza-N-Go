@@ -1,0 +1,39 @@
+<!-- <h1>Orders</h1>
+<% for (let order of orderItems) { %>
+  <div class="card" style="width: 18rem;">
+    <h3>#<%= order.id %></h3>
+    <p><%= order.order_time %></p>
+    <div class="card-body">
+      <div>
+        <h5>Order</h5>
+        <p>quanity:  <%= order.name %></p>
+        <p></p>
+      </div>
+      <div>
+        <h5>Customer</h5>
+        <p>Name: <%= order.username %> </p>
+        <p>Number: <%= order.phone_number %> </p>
+      </div>
+    </div>
+
+    <div>
+      <p>Estimated time (minutes)</p>
+      <form action="/order" method="POST" id="submitText">
+        <input type="text" name="estimatedTime" placeholder="Enter time">
+      </form>
+      <a type="submit" id="sendSMS" class="btn btn-dark">Send SMS</a>
+    </div>
+  </div>
+  <% } %> -->
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/admin/orders/new">New Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders/inProgress">In Progress</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders/complete">Completed</a>
+    </li>
+  </ul>
