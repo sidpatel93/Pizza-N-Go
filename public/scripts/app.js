@@ -27,25 +27,35 @@ $(document).ready(function(){
     });
   });
 
-  const $category = $('.category');
+  const $categoryHeading = $('.heading-container');
   const $itemsContainer = $('.items-container');
+  const $item = $('.item');
   
   //  Expand and hide menu items based on category
-  $category.each(function() {
-    
+  $categoryHeading.each(function() {
     // $(this) refers to which category is being clicked
     $(this).on('click', e => {
       e.preventDefault();
-      
-      // Check if the menu items are hidden or not and either shows them or hides them | ** needs refactoring **
-      if ($(this).find($itemsContainer).hasClass('hide')) {
-        $(this).find($itemsContainer).removeClass('hide');
-        $(this).find($itemsContainer).slideDown('fast');
-      } else {
-        $(this).find($itemsContainer).addClass('hide');
-        $(this).find($itemsContainer).slideUp('fast');
-      }
+      const $itemContainerPath = $(this).siblings($itemsContainer);
 
+      // Check if the menu items are hidden or not and either shows them or hides them | ** needs refactoring **
+      if ($itemContainerPath.hasClass('hide')) {
+        $itemContainerPath.removeClass('hide');
+        $itemContainerPath.slideDown('fast');
+      } else {
+        $itemContainerPath.addClass('hide');
+        $itemContainerPath.slideUp('fast');
+      };
+    });
+  });
+
+  // Makes each item clickable | need to add a modal pop up to trigger on click
+  $item.each(function() {
+    $(this).on('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      console.log($(this));
     });
   });
 

@@ -8,7 +8,7 @@ header {
 
 .top-image {
   background-color: rgb(52, 49, 49);
-  height: 23.50rem;
+  height: 16rem;
 }
 
 .resto-details {
@@ -80,7 +80,15 @@ header::after {
   align-self: center;
 }
 
+.cart-btn {
+  width: 95%;
+  margin: 3rem 0 2rem 1rem;
+  height: 50px;
+  border-radius: 8px;
+}
 
+
+// To add to arrow-btn
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
