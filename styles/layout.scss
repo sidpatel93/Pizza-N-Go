@@ -13,6 +13,7 @@ nav {
   height: 60px;
   background-color: gray;
   font-size: 1.2em;
+  position: fixed;
 }
 
 .nav-items {
@@ -26,9 +27,13 @@ nav {
 
 .nav-links {
   display: flex;
-  justify-content: space-between;
-  width: 20%;
-  margin-right: 3em;
+  justify-content: center;
+  width: 30%;
+  margin-right: 3rem;
   list-style-type: none;
+}
+
+.nav-links > * {
+  margin: 1rem;
 }
 
