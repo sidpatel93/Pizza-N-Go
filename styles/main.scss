@@ -46,6 +46,7 @@ header::after {
 
 .category {
   margin: 2rem 0 0 1rem;
+  cursor: pointer;
 }
 
 .heading-container {
@@ -56,7 +57,25 @@ header::after {
   width: 97%;
 }
 
-.expand-btn {
+.arrow-btn {
   margin-right: 1rem;
-  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.item {
+  display: flex;
+  border-radius: 8px;
+  border: 2px solid black;
+  max-width: 97%;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.item-img {
+  width: 10rem;
+  border-radius: 8px;
+  align-self: center;
 }

@@ -9,26 +9,73 @@
 
 <main class="menu-container">
 
- <section class="pizza category">
+ <section class="category">
    <div class="heading-container">
      <h2>Pizza</h2>
-     <i class="expand-btn fas fa-chevron-down"></i>
+     <i class="arrow-btn fas fa-chevron-down"></i>
+   </div>
+   <div class="items-container pizza">
+     <% for (let fooditem of fooditems) { %>
+      <% if (fooditem.category === 'pizza')  { %>
+        <div class="item">
+          <div class="left">
+            <h5 class="item-name"><%=fooditem.name%></h5>
+            <p class="item-description"><%=fooditem.description%></p>
+            <p class="item-price">$ <%=fooditem.price%></p>
+          </div>
+          <div class="right">
+            <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+          </div>
+      </div>
+        <% } %>  
+     <% } %>
    </div>
  </section>
 
- <section class="drinks category">
+ <section class="category">
   <div class="heading-container">
     <h2>Drinks</h2>
-    <i class="expand-btn fas fa-chevron-down"></i>
+    <i class="arrow-btn fas fa-chevron-down"></i>
+  </div>
+  <div class="items-container drinks hide">
+    <% for (let fooditem of fooditems) { %>
+     <% if (fooditem.category === 'drinks')  { %>
+       <div class="item">
+         <div class="left">
+           <h5 class="item-name"><%=fooditem.name%></h5>
+           <p class="item-description"><%=fooditem.description%></p>
+           <p class="item-price">$ <%=fooditem.price%></p>
+         </div>
+         <div class="right">
+           <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+         </div>
+     </div>
+       <% } %>  
+    <% } %>
   </div>
  </section>
 
- <section class="extras category">
+ <section class="category">
   <div class="heading-container">
     <h2>Extras</h2>
-    <i class="expand-btn fas fa-chevron-down"></i>
+    <i class="arrow-btn fas fa-chevron-down"></i>
   </div>
-  
+  <div class="items-container extras hide">
+    <% for (let fooditem of fooditems) { %>
+     <% if (fooditem.category !== 'pizza' && fooditem.category !== 'drinks')  { %>
+       <div class="item">
+         <div class="left">
+           <h5 class="item-name"><%=fooditem.name%></h5>
+           <p class="item-description"><%=fooditem.description%></p>
+           <p class="item-price">$ <%=fooditem.price%></p>
+         </div>
+         <div class="right">
+           <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+         </div>
+     </div>
+       <% } %>  
+    <% } %>
+  </div>
  </section>
 
 </main>
