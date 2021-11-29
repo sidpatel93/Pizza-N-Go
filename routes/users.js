@@ -10,22 +10,10 @@ const router  = express.Router();
 const homeController = require('../controllers/homeController')
 const cartController = require('../controllers/users/userCartController')
 const isLoggedIn = require('../middlewares/isLoggedIn')
+const adminController = require('../controllers/admin/adminController');
+
 
 module.exports = (db) => {
-
-
-  // router.get("", (req, res) => {
-  //   db.query(`SELECT * FROM users;`)
-  //     .then(data => {
-  //       const users = data.rows;
-  //       res.json({ users });
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
 
   router.get('/', homeController(db).home)
 
@@ -40,6 +28,12 @@ module.exports = (db) => {
   router.get("/cart", cartController(db).cart)
 
   router.post("/cart-update", cartController(db).updateCart)
+
+  router.post('/cart',cartController(db).sendOrder)
+
+  router.get('/order', adminController(db).get)
+
+  router.post('/order', adminController(db).post)
 
   return router;
 };

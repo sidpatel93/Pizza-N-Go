@@ -26,6 +26,26 @@ $(document).ready(function(){
 
     })
   })
+  // Once user presses Place Order button
+  $('#placeOrder').click(function(event) {
+    event.preventDefault();
+    console.log("hit!")
+    const formButton = $('#submitOrder');
+    formButton.submit();
+
+    // insert post request here (POST TO CART)
+    $.post()
+  })
+
+  $('#sendSMS').click(function(event) {
+    event.preventDefault();
+    console.log("hit")
+
+  })
 
 
 })
+
+
+
+
