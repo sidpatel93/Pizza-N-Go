@@ -48,7 +48,7 @@ function cartController(db) {
         const items = req.session.cart.foodItems;
         
         //store this order in the database.
-        db.query(`INSERT INTO test_orders (user_id, items)
+        db.query(`INSERT INTO orders (user_id, items)
         VALUES ($1, $2)`, [customerId, items])
         .then(data => {
           // if the order placed successfuly then clear the cart and 

@@ -8,9 +8,9 @@ function adminController(db) {
     newOrders: (req, res) => {
         // get all the orders from database
         db.query(`
-        select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
-        from test_orders
-        join users on test_orders.user_id = users.id
+        select orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+        from orders
+        join users on orders.user_id = users.id
         where order_status ='new'
         order by order_time;`)
         .then(data => {
@@ -19,7 +19,7 @@ function adminController(db) {
         if(req.xhr){
           return res.json(orderItems)
         } else {
-        res.render("admin/adminOrders",{orderItems, moment})
+          res.render("admin/adminOrders",{orderItems, moment})
         }
         }).catch(err => {
           console.log("error fetching orders from db", err)
@@ -29,15 +29,18 @@ function adminController(db) {
     inProgressOrders: (req, res) => {
       // get all the orders from database
       db.query(`
-      select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
-      from test_orders
-      join users on test_orders.user_id = users.id
+      select orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+      from orders
+      join users on orders.user_id = users.id
       where order_status ='inProgress'
       order by order_time;`)
       .then(data => {
       const orderItems = data.rows;
-      //console.log('food items',{orderItems})
-      res.render("admin/adminOrders",{orderItems, moment})
+      if(req.xhr){
+        return res.json(orderItems)
+      } else {
+        res.render("admin/inProgressOrders",{orderItems, moment})
+      }
       }).catch(err => {
         console.log("error fetching orders from db", err)
       })
@@ -46,9 +49,9 @@ function adminController(db) {
     completedOrders: (req, res)=> {
       // get all the orders from database
       db.query(`
-      select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
-      from test_orders
-      join users on test_orders.user_id = users.id
+      select orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+      from orders
+      join users on orders.user_id = users.id
       where order_status ='complete'
       order by order_time;`)
       .then(data => {
@@ -61,19 +64,46 @@ function adminController(db) {
     },
 
 
-    sendEstimatedTime: (req,res) => {
-      res.send("super nice job")
+    sendEstimatedTime: (req, res) => {
       // put logic for sending estimated time to user here.
       // Task send sms to user.
       // Change the clicked order status to in progress
+      const orderId = req.body.orderId
+      db.query(`
+      update orders 
+      set order_status = 'inProgress' 
+      where orders.id = $1`, [orderId])
+      .then((data) => {
+        // Put logic for sending the sms here for notification.
+        return res.redirect('/admin/orders/new')
+      })
+      .catch((err) => {
+        console.log("There is an error updating the order", err)
+        return res.redirect('/admin/orders/new')
+      })
     }, 
+
+    sendCompleteOrder: (req, res) => {
+      db.query(`
+      update orders 
+      set order_status = 'complete' 
+      where orders.id = $1`, [orderId])
+      .then((data) => {
+        //send notification to customer about the order completion here.
+        return res.redirect('/admin/orders/new')
+      })
+      .catch((err) => {
+        console.log("There is an error completing order the order", err)
+        return res.redirect('/admin/orders/new')
+      })
+    }
 
     // orders: (req, res) => {
     //   // find all the orders that are not completed:
     //   db.query(`
-    //   select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
-    //   from test_orders
-    //   join users on test_orders.user_id = users.id
+    //   select orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+    //   from orders
+    //   join users on orders.user_id = users.id
     //   where order_status!='completed'
     //   order by order_time;`)
     //   .then(data => {

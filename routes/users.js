@@ -47,6 +47,7 @@ module.exports = (db) => {
   router.get('/admin/orders/complete', isAdmin, adminController(db).completedOrders)
 
   router.post('/admin/orders/estimatedTime', isAdmin, adminController(db).sendEstimatedTime)
+  router.post('/admin/orders/complete', isAdmin, adminController(db).sendCompleteOrder)
 
   return router;
 };

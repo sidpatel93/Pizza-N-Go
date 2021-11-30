@@ -1,21 +1,10 @@
-
 $(document).ready(function(){
 
 
-  // submit the time time form. this will send sms to customer and update the order status in db  
-  // const sendEstimatebutton = $('#sendTimeSMS')
-  // sendEstimatebutton.click(()=>{
-  //   const estimatedTimeForm = $('.sendTime')
-  //   estimatedTimeForm.submit()
-  // })
-
-
-
-
-  const adminOrders = $('#adminOrders');
+  const adminInProgressOrders = $('#adminInProgressOrders');
   orders = []
   let newElements
-  axios.get('/admin/orders/new', {
+  axios.get('/admin/orders/inProgress', {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
@@ -24,7 +13,7 @@ $(document).ready(function(){
     orders = res.data
     console.log("This is json data from ajax request")
    let newElements = generateOrders(orders)
-    adminOrders.innerHTML = newElements
+   adminInProgressOrders.innerHTML = newElements
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
@@ -59,7 +48,7 @@ $(document).ready(function(){
   const generateOrders = (orders) => {
       for(let order of orders) {
         let singleorder = generateSingleOrder(order)
-        $("#adminOrders").append(singleorder)
+        $("#adminInProgressOrders").append(singleorder)
       }
   }
 
@@ -67,25 +56,9 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
 })
-
-
-
-// $(document).ready(function(){
-// console.log("admin.js is loaded")
-// const adminOrdersPage = $('#adminOrdersDiv')
-
-//   axios.get('/admin/orders', {
-//     Headers: {
-//       "X-Requested-With": "XMLHttpRequest"
-//     }
-//   })
-//   .then(res => {
-//     data = res.data
-//     generateAdminOrders = generateAdminOrders(data)
-//     // Insert data in the admin/orders page
-//     adminOrdersPage.innerHTML = generateElements
-//   })
-
-// })
-

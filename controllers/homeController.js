@@ -113,9 +113,9 @@ function homeController(db) {
        //get all the orders for the current users here to display
         customerId = req.user.id
         db.query(`
-        select test_orders.*
-        from test_orders
-        where test_orders.user_id=$1
+        select orders.*
+        from orders
+        where orders.user_id=$1
         order by order_time`, [customerId])
         .then(data => {
           const userOrders = data.rows
