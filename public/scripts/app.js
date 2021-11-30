@@ -30,7 +30,13 @@ $(document).ready(function(){
     console.log("hit!")
     const formButton = $('#submitOrder');
     formButton.submit();
+  })
 
+  // Louout user once they press the logout button
+  $('#logOut').click((event)=>{
+    event.preventDefault();
+    const logOutform = $('#logoutForm')
+    logOutform.submit();
   })
 
   $('#sendSMS').click(function(event) {

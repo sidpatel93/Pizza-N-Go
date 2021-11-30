@@ -2,9 +2,16 @@
   <ul class="nav-items">
     <li class="logo"><a href="/">P<i class="fas fa-pizza-slice"></i>zza N Go</a></li>
     <ul class="nav-links">
+      <% if(user) { %>
+        <form action="/logout" method="POST" id="logoutForm">
+        <li><a ref="#" id="logOut">Logout</li>
+        </form>
+        <li><a href="/cart">Cart</a></li>
+        <% } else { %>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
       <li><a href="/cart">Cart</a></li>
+      <% } %>
     </ul>
   </ul>
 </nav>
