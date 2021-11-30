@@ -21,15 +21,13 @@ $(document).ready(function(){
     btn.addEventListener('click', (event) => {
       let foodItem = JSON.parse(btn.dataset.fooditem);
       addInCart(foodItem)
-
     })
   })
+
   // Once user presses Place Order button
-  $('#placeOrder').click(function(event) {
-    event.preventDefault();
-    console.log("hit!")
+  $('#placeOrder').on("click", function(event) {
     const formButton = $('#submitOrder');
-    formButton.submit();
+    $('#submitOrder').submit()
   })
 
   // Louout user once they press the logout button
@@ -38,6 +36,12 @@ $(document).ready(function(){
     const logOutform = $('#logoutForm')
     logOutform.submit();
   })
+
+  // $('#sendEstimatedTime').click((event)=>{
+  //   event.preventDefault();
+  //   const sendTimeForm = $('#timeEstimate')
+  //   sendTimeForm.submit();
+  // })
 
   $('#sendSMS').click(function(event) {
     event.preventDefault();
@@ -91,3 +95,5 @@ $(document).ready(function(){
   // });
 
 });
+
+

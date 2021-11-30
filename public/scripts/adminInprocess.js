@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+  console.log("inProcess.js is loaded");
 
   const adminInProgressOrders = $('#adminInProgressOrders');
   orders = []
@@ -11,7 +12,6 @@ $(document).ready(function(){
   })
   .then( res => {
     orders = res.data
-    console.log("This is json data from ajax request")
     $("#adminInProgressOrders").empty()
     let newElements = generateOrders(orders)
    adminInProgressOrders.innerHTML = newElements
@@ -32,6 +32,7 @@ $(document).ready(function(){
     <div class="card-body">
       <div>
         <h5>Order Detail:</h5>
+        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
       </div>
       <div>
         <h5>Customer</h5>
@@ -39,6 +40,10 @@ $(document).ready(function(){
         <p>Number: ${orderUserPhone} </p>
       </div>
     </div>
+    <form action="/admin/orders/complete" method="POST" id="${orderId}orderComplete">
+      <input type="hidden" name="OrderId" value="${orderId}">
+      <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn btn-dark">Order is ready!</a>
+    </form>
   </div>
     `)
 
@@ -46,19 +51,26 @@ $(document).ready(function(){
 
   }
   const generateOrders = (orders) => {
+       //$("#adminOrders").empty()
       for(let order of orders) {
         let singleorder = generateSingleOrder(order)
         $("#adminInProgressOrders").append(singleorder)
       }
   }
 
+  const generateSingleitem = (item) => {
+    let itemName = item.item.name
+    let itemQty = item.qty
+    return `<li class="card-title">${itemName} Qty: ${itemQty}</li>`
+  }
 
-
-
-
-
-
-
-
+  const listItems = (itemsArray) => {
+    let itemsDiv = '';
+    for(let item of itemsArray) {
+        let singleItem = generateSingleitem(item)
+        itemsDiv += singleItem;
+      }
+      return itemsDiv;
+  }
 
 })

@@ -68,13 +68,16 @@ function adminController(db) {
       // put logic for sending estimated time to user here.
       // Task send sms to user.
       // Change the clicked order status to in progress
-      const orderId = req.body.orderId
+      const OrderId = req.body.OrderId
+      console.log("order to update is:", OrderId)
+      
       db.query(`
       update orders 
       set order_status = 'inProgress' 
-      where orders.id = $1`, [orderId])
+      where orders.id =$1`, [OrderId])
       .then((data) => {
         // Put logic for sending the sms here for notification.
+        console.log("order is updated");
         return res.redirect('/admin/orders/new')
       })
       .catch((err) => {
@@ -84,17 +87,19 @@ function adminController(db) {
     }, 
 
     sendCompleteOrder: (req, res) => {
+      const OrderId = req.body.OrderId
+
       db.query(`
       update orders 
       set order_status = 'complete' 
-      where orders.id = $1`, [orderId])
+      where orders.id = $1`, [OrderId])
       .then((data) => {
         //send notification to customer about the order completion here.
-        return res.redirect('/admin/orders/new')
+        return res.redirect('/admin/orders/inProgress')
       })
       .catch((err) => {
         console.log("There is an error completing order the order", err)
-        return res.redirect('/admin/orders/new')
+        return res.redirect('/admin/orders/inProgress')
       })
     }
 

@@ -7,14 +7,10 @@ $(document).ready(function(){
   //   const estimatedTimeForm = $('.sendTime')
   //   estimatedTimeForm.submit()
   // })
-
- $("#placeOrder").click(()=> {
-    console.log("order is placed")
-  })
+  console.log("admin.js is loaded");
 
   const adminOrders = $('#adminOrders');
   orders = []
-  let newElements
   axios.get('/admin/orders/new', {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
@@ -22,15 +18,12 @@ $(document).ready(function(){
   })
   .then( res => {
     orders = res.data
-    console.log("This is json data from ajax request")
     $("#adminOrders").empty()
    let newElements = generateOrders(orders)
     adminOrders.innerHTML = newElements
-
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
- 
 
   const generateSingleOrder = (order) => {
     let orderId = order.id;
@@ -53,6 +46,11 @@ $(document).ready(function(){
         <p>Number: ${orderUserPhone} </p>
       </div>
     </div>
+    <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
+      <input type="hidden" name="OrderId" value="${orderId}">
+      <input type="text" name="estimatedTime" placeholder="Enter time">
+      <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn btn-dark">Send SMS</a>
+    </form>
   </div>
     `)
 
@@ -79,9 +77,9 @@ $(document).ready(function(){
         let singleItem = generateSingleitem(item)
         itemsDiv += singleItem;
       }
-      console.log(itemsDiv)
       return itemsDiv;
   }
+
 
 
 })
