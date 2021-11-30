@@ -7,22 +7,25 @@
 
 const express = require('express');
 const router  = express.Router();
+
+// Controllers
 const homeController = require('../controllers/homeController')
 const cartController = require('../controllers/users/userCartController')
-const isLoggedNotLoggedIn = require('../middlewares/isLoggedNotLoggedIn')
-const isLoggedIn = require('../middlewares/isLoggedIn')
 const adminController = require('../controllers/admin/adminController');
-
+// Middlewares
+const isNotLoggedIn = require('../middlewares/isNotLoggedIn')
+const isLoggedIn = require('../middlewares/isLoggedIn')
+const isAdmin = require('../middlewares/isAdmin')
 
 
 module.exports = (db) => {
 
   router.get('/', homeController(db).home)
 
-  router.get('/register', isLoggedNotLoggedIn,homeController(db).register)
+  router.get('/register', isNotLoggedIn,homeController(db).register)
   router.post('/register', homeController(db).registerUser)
 
-  router.get('/login', isLoggedNotLoggedIn,homeController(db).login)
+  router.get('/login', isNotLoggedIn,homeController(db).login)
 
   router.post('/login', homeController(db).loginUser)
 
@@ -38,12 +41,12 @@ module.exports = (db) => {
   router.post("/orders", isLoggedIn, cartController(db).placeOrder)
 
   //Admin route
-  router.get('/admin/orders', isLoggedIn, adminController(db).newOrders)
-  router.get('/admin/orders/new', isLoggedIn, adminController(db).newOrders)
-  router.get('/admin/orders/inProgress', isLoggedIn, adminController(db).inProgressOrders)
-  router.get('/admin/orders/complete', isLoggedIn, adminController(db).completedOrders)
+  router.get('/admin/orders', isAdmin, adminController(db).newOrders)
+  router.get('/admin/orders/new', isAdmin, adminController(db).newOrders)
+  router.get('/admin/orders/inProgress', isAdmin, adminController(db).inProgressOrders)
+  router.get('/admin/orders/complete', isAdmin, adminController(db).completedOrders)
 
-  router.post('/admin/orders/estimatedTime', isLoggedIn, adminController(db).sendEstimatedTime)
+  router.post('/admin/orders/estimatedTime', isAdmin, adminController(db).sendEstimatedTime)
 
   return router;
 };

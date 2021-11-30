@@ -54,6 +54,7 @@ function cartController(db) {
           // if the order placed successfuly then clear the cart and 
           // redirect to customers order page.
           // We might need to add the message notification logic here
+          console.log(req.user)
           delete req.session.cart;
           return res.redirect('/user/orders')
         })
