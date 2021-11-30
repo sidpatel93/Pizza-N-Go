@@ -36,6 +36,7 @@ function adminController(db) {
       order by order_time;`)
       .then(data => {
       const orderItems = data.rows;
+      console.log(orderItems)
       if(req.xhr){
         return res.json(orderItems)
       } else {
@@ -56,8 +57,13 @@ function adminController(db) {
       order by order_time;`)
       .then(data => {
       const orderItems = data.rows;
+      console.log(orderItems)
       //console.log('food items',{orderItems})
-      res.render("admin/adminOrders",{orderItems, moment})
+      if(req.xhr){
+          return res.json(orderItems)
+      } else {
+          res.render("admin/completedOrders",{orderItems, moment})
+      }
       }).catch(err => {
         console.log("error fetching orders from db", err)
       })

@@ -38,7 +38,7 @@ $(document).ready(function(){
     <div class="card-body">
       <div>
         <h5>Order Detail:</h5>
-        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
+        <div clss='listItems'>${listItems(Object.values(order.items))}</div>
       </div>
       <div>
         <h5>Customer</h5>
