@@ -4,16 +4,19 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
-
+  <title>Pizza N Go | Home</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Including Bootstrap 5.1.3 CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- vendor defined css file, Does not need to modify this as per the instruction -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <!-- User defined CSS files for this perticular page -->
-  <link rel="stylesheet" href="/styles/home.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <!-- Client side JS  -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -21,33 +24,9 @@
 </head>
 
 <body>
-  <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="btn btn-primary" aria-current="page" href="/cart"> <%= session.cart ? session.cart.totalQty : '0' %> x Cart</a>
-    </li>
+  <!-- Navbar will be included on all pages -->
+  <%- include('partials/_navbar.ejs')  %>
 
-    <% if(user) { %>
-      <li class="nav-item">
-        <form id="logOut" action="/logout" method="POST">
-          <a onclick="document.getElementById('logOut').submit()" class="nav-link" href="#">Logout</a>
-        </form>
-      </li>
-    <% } else { %>
-
-    <li class="nav-item">
-      <a class="nav-link" href="/register">Register</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/login">Login</a>
-    </li>
-    <% } %>
-
-
-
-  </ul>
 
   <!-- we need to change this body content for every pages -->
 
