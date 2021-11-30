@@ -116,11 +116,10 @@ function homeController(db) {
         select orders.*
         from orders
         where orders.user_id=$1
-        order by order_time`, [customerId])
+        order by order_time DESC
+        limit 1`, [customerId])
         .then(data => {
           const userOrders = data.rows
-          console.log("user id:", customerId)
-          console.log("orders",data.rows)
           res.render('users/userOrders', {userOrders, moment})
         })
         .catch((err)=> {
