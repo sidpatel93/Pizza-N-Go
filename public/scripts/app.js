@@ -10,7 +10,7 @@ $(document).ready(function(){
     axios.post('/cart-update', foodItem)
     .then((res) => {
         console.log(res);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     });
   }
@@ -18,30 +18,23 @@ $(document).ready(function(){
   //Select all the add to cart buttons -> this will give an array of all the btns
   const addToCartBtn = document.querySelectorAll('.add-to-cart');
   // attach event listener on individual button to add it to cart
-  addToCartBtn.forEach((btn)=>{
-    btn.addEventListener('click', (event)=>{
+  addToCartBtn.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
       let foodItem = JSON.parse(btn.dataset.fooditem);
-      addInCart(foodItem)
+      addInCart(foodItem);
+    });
+  });
 
-
-    })
-  })
-  // Once user presses Place Order button
-  $('#placeOrder').click(function(event) {
-    event.preventDefault();
-    console.log("hit!")
-    const formButton = $('#submitOrder');
-    formButton.submit();
-  })
-
-  $('#sendSMS').click(function(event) {
-    event.preventDefault();
-    console.log("hit")
-  })
-
+  // Category expand
   const $categoryHeading = $('.heading-container');
   const $itemsContainer = $('.items-container');
-  const $item = $('.item');
+  const item = document.querySelectorAll('.item');
+
+  // Modal
+  // const $popUp = $("#item-pop-up");
+  // const $popUpContent = $('.pop-up-content');
+  // const $close = $('.close');
+
   
   //  Expand and hide menu items based on category
   $categoryHeading.each(function() {
@@ -61,14 +54,20 @@ $(document).ready(function(){
     });
   });
 
-  // Makes each item clickable | need to add a modal pop up to trigger on click
-  $item.each(function() {
-    $(this).on('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
 
-      console.log($(this));
-    });
-  });
+
+  // Makes each item clickable | need to add a modal pop up to trigger on click
+  // item.forEach(function(item) {
+  //   item.addEventListener('click', e => {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+      
+  //   });
+  // });
+
+  // // Close pop up
+  // $close.on('click', () => {
+  //   $popUp.css({'display': 'none'});
+  // });
 
 });

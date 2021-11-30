@@ -7,7 +7,7 @@ header {
 }
 
 .top-image {
-  background-color: rgb(52, 49, 49);
+  background-color: #FF6738;
   height: 16rem;
 }
 
@@ -33,7 +33,7 @@ header::after {
   content: '';
   margin: 1rem 0 0 1rem;
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.44);
+  background-color: rgba(0, 0, 0, 0.19);
   width: 95%;
 }
 
@@ -53,41 +53,13 @@ header::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid rgba(0, 0, 0, 0.44) 1px;
+  border-bottom: solid rgba(0, 0, 0, 0.19) 1px;
   width: 97%;
 }
 
 .arrow-btn {
   margin-right: 1rem;
 }
-
-.hide {
-  display: none;
-}
-
-.item {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 8px;
-  border: 2px solid black;
-  max-width: 97%;
-  margin-top: 1rem;
-  padding: 1rem;
-}
-
-.item-img {
-  width: 10rem;
-  border-radius: 8px;
-  align-self: center;
-}
-
-.cart-btn {
-  width: 95%;
-  margin: 3rem 0 2rem 1rem;
-  height: 50px;
-  border-radius: 8px;
-}
-
 
 // To add to arrow-btn
 @keyframes rotate {
@@ -98,3 +70,86 @@ header::after {
     transform: rotate(180deg);
   }
 }
+
+
+.hide {
+  display: none;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  max-width: 97%;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #FFF;
+}
+
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-img {
+  width: 10rem;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.add-to-cart {
+  border-radius: 8px;
+  background-color: #00a87bb5;
+  border:#00A87C solid 2px;
+  text-align: center;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 3px;
+  margin: 0.3rem;
+}
+
+.add-to-cart:hover {
+  background-color: #FFF;
+  border:#00A87C solid 2px;
+  color: #00A87C;
+}
+
+.cart-btn {
+  width: 95%;
+  margin: 3rem 0 2rem 1rem;
+  height: 50px;
+  border-radius: 8px;
+}
+
+
+
+// .pop-up {
+//   display: none; 
+//   position: fixed;
+//   z-index: 1; 
+//   padding-top: 100px;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+//   height: 100%; 
+//   overflow: auto;
+//   background-color: rgba(0,0,0,0.44);
+// }
+
+// .pop-up-content {
+//   background-color: #fefefe;
+//   margin: auto;
+//   padding: 20px;
+//   border: 1px solid #888;
+//   width: 80%;
+//   height: 80%;
+//   border-radius: 8px;
+// }
+
+// .close {
+//   cursor: pointer;
+// }
