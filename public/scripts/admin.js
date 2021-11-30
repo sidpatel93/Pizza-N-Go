@@ -1,7 +1,6 @@
 
 $(document).ready(function(){
 
-
   // submit the time time form. this will send sms to customer and update the order status in db  
   // const sendEstimatebutton = $('#sendTimeSMS')
   // sendEstimatebutton.click(()=>{
@@ -9,8 +8,9 @@ $(document).ready(function(){
   //   estimatedTimeForm.submit()
   // })
 
-
-
+ $("#placeOrder").click(()=> {
+    console.log("order is placed")
+  })
 
   const adminOrders = $('#adminOrders');
   orders = []
@@ -82,6 +82,8 @@ $(document).ready(function(){
       console.log(itemsDiv)
       return itemsDiv;
   }
+
+
 })
 
 

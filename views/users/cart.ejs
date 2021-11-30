@@ -26,8 +26,11 @@
   <p> Sub Total: <%= session.cart.totalPrice %></p>
   <p>Tax: [14.975%]:</p>
   <p>Total: </p>
-
+  <% if(user) { %>
   <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
+  <% } else { %>
+    <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
+    <% } %> 
 </div>
 
 <% } %>

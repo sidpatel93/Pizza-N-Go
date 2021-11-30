@@ -1,5 +1,4 @@
 
-
 // Client facing scripts here
 $(document).ready(function(){
 
@@ -23,7 +22,6 @@ $(document).ready(function(){
       let foodItem = JSON.parse(btn.dataset.fooditem);
       addInCart(foodItem)
 
-
     })
   })
   // Once user presses Place Order button
@@ -33,8 +31,6 @@ $(document).ready(function(){
     const formButton = $('#submitOrder');
     formButton.submit();
 
-    // insert post request here (POST TO CART)
-    $.post()
   })
 
   $('#sendSMS').click(function(event) {
@@ -42,7 +38,6 @@ $(document).ready(function(){
     console.log("hit")
 
   })
-
 
 })
 
