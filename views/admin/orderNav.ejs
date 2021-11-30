@@ -1,4 +1,4 @@
-<h1>Orders</h1>
+<!-- <h1>Orders</h1>
 <% for (let order of orderItems) { %>
   <div class="card" style="width: 18rem;">
     <h3>#<%= order.id %></h3>
@@ -24,4 +24,16 @@
       <a type="submit" id="sendSMS" class="btn btn-dark">Send SMS</a>
     </div>
   </div>
-  <% } %>
+  <% } %> -->
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/admin/orders/new">New Orders</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders/inProgress">In Progress</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/orders/complete">Completed</a>
+    </li>
+  </ul>

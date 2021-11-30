@@ -1,5 +1,4 @@
 
-
 // Client facing scripts here
 $(document).ready(function(){
 
@@ -21,9 +20,24 @@ $(document).ready(function(){
   addToCartBtn.forEach((btn) => {
     btn.addEventListener('click', (event) => {
       let foodItem = JSON.parse(btn.dataset.fooditem);
-      addInCart(foodItem);
-    });
-  });
+      addInCart(foodItem)
+
+    })
+  })
+  // Once user presses Place Order button
+  $('#placeOrder').click(function(event) {
+    event.preventDefault();
+    console.log("hit!")
+    const formButton = $('#submitOrder');
+    formButton.submit();
+
+  })
+
+  $('#sendSMS').click(function(event) {
+    event.preventDefault();
+    console.log("hit")
+
+  })
 
   // Category expand
   const $categoryHeading = $('.heading-container');

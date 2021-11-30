@@ -1,8 +1,17 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-
+const moment = require('moment')
 
 function homeController(db) {
+
+  const userRole = (req) => {
+    if(req.user.isadmin){
+      return 'admin/orders/new'
+    }
+    return '/'
+  }
+
+
 
   return {
       home: (req, res) => {
@@ -86,7 +95,9 @@ function homeController(db) {
               console.log("error:",info.message)
               return next(err)
             }
-            return res.redirect("/")
+            // if the user is admin then redirect to admin/orders page and if not then redirecto to home page
+
+            return res.redirect(userRole(req))
           })
 
         })(req, res, next)
@@ -96,6 +107,26 @@ function homeController(db) {
        // .logout is from passport library
        req.logout()
        return res.redirect('/login')
+     },
+
+     orders: (req, res) => {
+       //get all the orders for the current users here to display
+        customerId = req.user.id
+        db.query(`
+        select orders.*
+        from orders
+        where orders.user_id=$1
+        order by order_time`, [customerId])
+        .then(data => {
+          const userOrders = data.rows
+          console.log("user id:", customerId)
+          console.log("orders",data.rows)
+          res.render('users/userOrders', {userOrders, moment})
+        })
+        .catch((err)=> {
+          console.log("Error fetching the user's orders", err)
+          res.redirect('/')
+        })
      }
 
   }
