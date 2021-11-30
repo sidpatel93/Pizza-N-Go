@@ -12,13 +12,13 @@ $(document).ready(function(){
   .then( res => {
     orders = res.data
     console.log("This is json data from ajax request")
-   let newElements = generateOrders(orders)
+    $("#adminInProgressOrders").empty()
+    let newElements = generateOrders(orders)
    adminInProgressOrders.innerHTML = newElements
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
  
-
   const generateSingleOrder = (order) => {
     let orderId = order.id;
     let orderUser =order.username; 

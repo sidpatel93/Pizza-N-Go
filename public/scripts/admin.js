@@ -23,8 +23,10 @@ $(document).ready(function(){
   .then( res => {
     orders = res.data
     console.log("This is json data from ajax request")
+    $("#adminOrders").empty()
    let newElements = generateOrders(orders)
     adminOrders.innerHTML = newElements
+
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
@@ -43,6 +45,7 @@ $(document).ready(function(){
     <div class="card-body">
       <div>
         <h5>Order Detail:</h5>
+        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
       </div>
       <div>
         <h5>Customer</h5>
@@ -57,16 +60,28 @@ $(document).ready(function(){
 
   }
   const generateOrders = (orders) => {
+       //$("#adminOrders").empty()
       for(let order of orders) {
         let singleorder = generateSingleOrder(order)
         $("#adminOrders").append(singleorder)
       }
   }
 
+  const generateSingleitem = (item) => {
+    let itemName = item.item.name
+    let itemQty = item.qty
+    return `<li class="card-title">${itemName} Qty: ${itemQty}</li>`
+  }
 
-
-
-
+  const listItems = (itemsArray) => {
+    let itemsDiv = '';
+    for(let item of itemsArray) {
+        let singleItem = generateSingleitem(item)
+        itemsDiv += singleItem;
+      }
+      console.log(itemsDiv)
+      return itemsDiv;
+  }
 })
 
 
