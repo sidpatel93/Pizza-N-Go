@@ -4,6 +4,15 @@ const moment = require('moment')
 
 function homeController(db) {
 
+  const userRole = (req) => {
+    if(req.user.isadmin){
+      return 'admin/orders/new'
+    }
+    return '/'
+  }
+
+
+
   return {
       home: (req, res) => {
         db.query(`SELECT * FROM menuItems;`)
@@ -86,7 +95,9 @@ function homeController(db) {
               console.log("error:",info.message)
               return next(err)
             }
-            return res.redirect("/")
+            // if the user is admin then redirect to admin/orders page and if not then redirecto to home page
+
+            return res.redirect(userRole(req))
           })
 
         })(req, res, next)
