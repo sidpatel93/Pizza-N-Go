@@ -1,35 +1,21 @@
 const moment = require('moment')
 
+
 function adminController(db) {
 
   return {
 
-    get: (req,res) => {
-      // get all the orders from database
-      db.query(`SELECT orders.id,orders.order_time, users.name as username,users.phone_number, menuItems.*,orderItems.* FROM orders
-                JOIN orderItems ON orders.id = order_id
-                JOIN users ON user_id = users.id
-                JOIN menuItems ON menuItems.id = orderItems.menuItem_id
-                ORDER BY orders.order_time;`)
-      .then(data => {
-        const orderItems = data.rows;
-        //console.log('food items',{orderItems})
-        res.render("admin/order",{orderItems, moment})
-      })
-
-    },
-
     newOrders: (req, res) => {
         // get all the orders from database
-        db.query(`SELECT orders.id,orders.order_time, users.name as username,users.phone_number, menuItems.*,orderItems.* FROM orders
-        JOIN orderItems ON orders.id = order_id
-        JOIN users ON user_id = users.id
-        JOIN menuItems ON menuItems.id = orderItems.menuItem_id
-        where orders.status = 'New'
-        ORDER BY orders.order_time;`)
+        db.query(`
+        select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+        from test_orders
+        join users on test_orders.user_id = users.id
+        where order_status ='new'
+        order by order_time;`)
         .then(data => {
         const orderItems = data.rows;
-        //console.log('food items',{orderItems})
+        console.log('food items',{orderItems})
         res.render("admin/adminOrders",{orderItems, moment})
         }). catch(err => {
           console.log("error fetching orders from db", err)
@@ -38,12 +24,12 @@ function adminController(db) {
 
     inProgressOrders: (req, res) => {
       // get all the orders from database
-      db.query(`SELECT orders.id,orders.order_time, users.name as username,users.phone_number, menuItems.*,orderItems.* FROM orders
-      JOIN orderItems ON orders.id = order_id
-      JOIN users ON user_id = users.id
-      JOIN menuItems ON menuItems.id = orderItems.menuItem_id
-      where orders.status = 'In Progress'
-      ORDER BY orders.order_time;`)
+      db.query(`
+      select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+      from test_orders
+      join users on test_orders.user_id = users.id
+      where order_status ='inProgress'
+      order by order_time;`)
       .then(data => {
       const orderItems = data.rows;
       //console.log('food items',{orderItems})
@@ -55,12 +41,12 @@ function adminController(db) {
 
     completedOrders: (req, res)=> {
       // get all the orders from database
-      db.query(`SELECT orders.id,orders.order_time, users.name as username,users.phone_number, menuItems.*,orderItems.* FROM orders
-      JOIN orderItems ON orders.id = order_id
-      JOIN users ON user_id = users.id
-      JOIN menuItems ON menuItems.id = orderItems.menuItem_id
-      where orders.status = 'Complete'
-      ORDER BY orders.order_time;`)
+      db.query(`
+      select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+      from test_orders
+      join users on test_orders.user_id = users.id
+      where order_status ='complete'
+      order by order_time;`)
       .then(data => {
       const orderItems = data.rows;
       //console.log('food items',{orderItems})
@@ -76,11 +62,31 @@ function adminController(db) {
       // put logic for sending estimated time to user here.
       // Task send sms to user.
       // Change the clicked order status to in progress
-    }
+    }, 
+
+    // orders: (req, res) => {
+    //   // find all the orders that are not completed:
+    //   db.query(`
+    //   select test_orders.* , users.name as username, users.id as userid, users.phone_number as userphone
+    //   from test_orders
+    //   join users on test_orders.user_id = users.id
+    //   where order_status!='completed'
+    //   order by order_time;`)
+    //   .then(data => {
+    //     const  pendingOrders = data.rows 
+    //     console.log("all pending Oeders", pendingOrders)
+    //     res.render('admin/adminOrders', {pendingOrders, moment})
+    //   })
+    //   .catch(err => {
+    //     console.log("Error fetching incomplete orders", err)
+    //   })
+
+    // },
+
 
   }
-
 }
+
 
 module.exports = adminController;
 

@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-
+const moment = require('moment')
 
 function homeController(db) {
 
@@ -96,6 +96,26 @@ function homeController(db) {
        // .logout is from passport library
        req.logout()
        return res.redirect('/login')
+     },
+
+     orders: (req, res) => {
+       //get all the orders for the current users here to display
+        customerId = req.user.id
+        db.query(`
+        select test_orders.*
+        from test_orders
+        where test_orders.user_id=$1
+        order by order_time`, [customerId])
+        .then(data => {
+          const userOrders = data.rows
+          console.log("user id:", customerId)
+          console.log("orders",data.rows)
+          res.render('users/userOrders', {userOrders, moment})
+        })
+        .catch((err)=> {
+          console.log("Error fetching the user's orders", err)
+          res.redirect('/')
+        })
      }
 
   }

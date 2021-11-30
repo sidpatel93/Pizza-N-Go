@@ -15,21 +15,22 @@
     </li>
   </ul>
   
-  
+
   <% for (let order of orderItems) { %>
     <div class="card" style="width: 18rem;">
-      <h3>#<%= order.id %></h3>
+      <h3>Order Number: <%= order.id %></h3>
       <p><%= moment(order.order_time).format('LLL') %></p>
       <div class="card-body">
         <div>
-          <h5>Order</h5>
-          <p>quanity:  <%= order.name %></p>
-          <p></p>
+          <h5>Order Detail:</h5>
+          <% for((items) of Object.values(order.items)) { %> 
+            <li class="card-title"><%= items.item.name %> Qty: <%= items.qty%></li>
+            <% } %> 
         </div>
         <div>
           <h5>Customer</h5>
           <p>Name: <%= order.username %> </p>
-          <p>Number: <%= order.phone_number %> </p>
+          <p>Number: <%= order.userphone %> </p>
         </div>
       </div>
   
@@ -42,8 +43,5 @@
       </div>
     </div>
     <% } %>
-
-
-
 
 </div>

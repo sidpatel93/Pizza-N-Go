@@ -27,7 +27,20 @@
   <p>Tax: [14.975%]:</p>
   <p>Total: </p>
 
-  <form action="/cart" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
+  <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
 </div>
 
 <% } %>
+
+
+  <!-- <% if(user) { %>
+    <form action="/orders" method="POST" id="placeOrder">
+    <a onclick="document.getElementById('placeOrder').submit()" class="btn btn-primary" href="#" role="button">Check out</a>
+    </form>
+  <% } else { %>
+    <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
+  <% } %> 
+</form> -->
+
+
+
