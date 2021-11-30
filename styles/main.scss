@@ -24,7 +24,6 @@ header {
 .address {
   line-height: 1.2;
   font-size: 14px;
-  height: 100px;
   color: rgba(0, 0, 0, 0.44);
   display: inline;
 }
@@ -70,7 +69,6 @@ header::after {
     transform: rotate(180deg);
   }
 }
-
 
 .hide {
   display: none;
@@ -153,3 +151,76 @@ header::after {
 // .close {
 //   cursor: pointer;
 // }
+
+
+// LOGIN PAGE
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 2rem;
+  height: 100%;
+
+  & p {
+    margin-top: 2rem;
+    align-self: center;
+
+    & a {
+      color: #2962FF;
+    }
+  }
+
+  & button {
+    height: 2.5rem;
+    border-radius: 8px;
+    background-color: #000;
+    color: #FFF;
+    border: none;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  & h2 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 0;
+  }
+
+  & p {
+    line-height: 1.2;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.44);
+    display: inline;
+  }
+
+  margin-bottom: 4rem;
+}
+
+.form-inputs {
+  height: 13rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4.2rem;
+
+  & .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  & label {
+    margin-bottom: .5rem;
+    color: rgba(0, 0, 0, 0.44);
+  }
+
+  & input {
+    padding: 1rem;
+    height: 2.5rem;
+    border-radius: 8px;
+  }
+}

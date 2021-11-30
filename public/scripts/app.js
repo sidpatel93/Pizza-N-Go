@@ -27,7 +27,7 @@ $(document).ready(function(){
   // Once user presses Place Order button
   $('#placeOrder').on("click", function(event) {
     const formButton = $('#submitOrder');
-    $('#submitOrder').submit()
+    formButton.submit();
   })
 
   // Louout user once they press the logout button
@@ -52,17 +52,10 @@ $(document).ready(function(){
   // Category expand
   const $categoryHeading = $('.heading-container');
   const $itemsContainer = $('.items-container');
-  const item = document.querySelectorAll('.item');
-
-  // Modal
-  // const $popUp = $("#item-pop-up");
-  // const $popUpContent = $('.pop-up-content');
-  // const $close = $('.close');
 
   
   //  Expand and hide menu items based on category
   $categoryHeading.each(function() {
-    // $(this) refers to which category is being clicked
     $(this).on('click', e => {
       e.preventDefault();
       const $itemContainerPath = $(this).siblings($itemsContainer);
@@ -78,21 +71,6 @@ $(document).ready(function(){
     });
   });
 
-
-
-  // Makes each item clickable | need to add a modal pop up to trigger on click
-  // item.forEach(function(item) {
-  //   item.addEventListener('click', e => {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-      
-  //   });
-  // });
-
-  // // Close pop up
-  // $close.on('click', () => {
-  //   $popUp.css({'display': 'none'});
-  // });
 
 });
 
