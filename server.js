@@ -12,6 +12,8 @@ const ejsLayouts= require('express-ejs-layouts');
 const session = require('express-session')
 const pgSession = require('connect-pg-simple')(session)
 const passport = require('passport')
+const emitter = require('events')
+
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -23,6 +25,9 @@ db.connect();
 const sessionStore = new pgSession({
   pool: db,
 })
+
+const eventEmitter = new emitter()
+app.set('eventEmitter', eventEmitter)
 
 // session config to store the user session like user credentials, cart etc.
 app.use(session({
@@ -86,6 +91,20 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
+const foodApp = app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+// Using the existing server to connect with socket.io
+const io = require('socket.io')(foodApp)
+
+io.on("connection", (socket)=> {
+    console.log(socket.id)
+    socket.on('join', (roomName) => {
+      socket.join(roomName)
+    })
+})
+
+eventEmitter.on('userPlacedOrder', (data)=> {
+  io.to('adminRoom').emit('userPlacedOrder', data)
+})

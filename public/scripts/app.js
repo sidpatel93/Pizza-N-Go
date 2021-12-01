@@ -2,6 +2,7 @@
 // Client facing scripts here
 $(document).ready(function(){
 
+
   // Console.log to check if this file if loaded in browser properly
   console.log("app.js is loaded");
 
@@ -70,6 +71,13 @@ $(document).ready(function(){
       };
     });
   });
+
+
+  // let socket = io()
+  // let adminPath = window.location.pathname
+  // if(adminPath.includes('admin')) {
+  //   socket.emit('join', 'adminRoom')
+  // }
 
 
 });

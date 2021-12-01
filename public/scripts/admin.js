@@ -80,6 +80,19 @@ $(document).ready(function(){
       return itemsDiv;
   }
 
+  let socket = io();
+  let adminPath = window.location.pathname
+  
+  if(adminPath.includes('admin')) {
+    socket.emit('join', 'adminRoom')
+  }
+
+  socket.on('userPlacedOrder', (order)=> {
+    console.log("socket is activating in admin")
+    orders.unshift(order);
+    adminOrders.innerHTML = ''
+    adminOrders.innerHTML = generateOrders(orders)
+  })
 
 
 })

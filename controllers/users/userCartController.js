@@ -49,12 +49,17 @@ function cartController(db) {
         
         //store this order in the database.
         db.query(`INSERT INTO orders (user_id, items)
-        VALUES ($1, $2)`, [customerId, items])
+        VALUES ($1, $2)
+        returning *`, [customerId, items])
         .then(data => {
           // if the order placed successfuly then clear the cart and 
           // redirect to customers order page.
           // We might need to add the message notification logic here
-          console.log(req.user)
+          // send events that the order is placed
+
+          const eventEmitter = req.app.get('eventEmitter')
+          eventEmitter.emit('userPlacedOrder', data.rows[0])
+
           delete req.session.cart;
           return res.redirect('/user/orders')
         })
