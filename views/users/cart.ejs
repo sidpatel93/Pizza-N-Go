@@ -4,11 +4,16 @@
 <!-- Show this page if the cart is empty -->
 <div class="top-image"></div>
 <% if (!session.cart) { %>
-  
-  <div>
-    <h2> This section will visible if the cart is empty</h2>
+
+  <div class="center-align">
+    <div class="empty-cart-container">
+      <h2>Your cart is empty</h2>
+      <i class="fas fa-cart-arrow-down"></i>
+      <p>Looks like you haven't added anything to your cart yet.</p>
+      <a href="/" class="btn">Add items</a>
+    </div>
   </div>
-  
+
   <% } else {%>
     <div class="center-align">
   <!-- Show this when there is something in the cart -->
@@ -34,9 +39,10 @@
     </div>
 
     <% if(user) { %>
-      <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="submit-btn">Place Order</a></form>
+      <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn">Place Order</a></form>
       <% } else { %>
-        <a class="submit-btn" href="/login" role="button">Login to place an order</a>
+        <a class="btn" href="/login" role="button">Login to place an order</a>
         <% } %> 
-  </section>
+      </section>
+      <% } %> 
 </div>
