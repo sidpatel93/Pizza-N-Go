@@ -4,7 +4,7 @@
 
 <div class="card">
   <h5 class="card-header">Order Number: <%= order.id %></h5>
-  <h5 class="card-header">Order placed at: <%= moment(order.order_time).format('LLL') %></h5>
+  <h5 class="card-header">Order placed at: <%= moment(order.order_time).tz("America/Toronto").format('LLL') %></h5>
   <div class="card-body">
     <ul>
       <% for((items) of Object.values(order.items)) { %> 
