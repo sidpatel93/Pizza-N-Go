@@ -2,7 +2,7 @@
 
 <% for(let order of userOrders) { %>
 
-<div class="card">
+<div >
   <h5 class="card-header">Order Number: <%= order.id %></h5>
   <h5 class="card-header">Order placed at: <%= moment(order.order_time).format('LLL') %></h5>
   <div class="card-body">

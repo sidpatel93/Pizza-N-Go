@@ -3,6 +3,7 @@
 
 
 <!-- Show this page if the cart is empty -->
+<div class="top-image"></div>
 <% if (!session.cart) { %>
 
 <div>
@@ -10,7 +11,28 @@
 </div>
 
 <% } else {%>
+<!-- Show this when there is something in the cart -->
+<section class="cart-container">
+  <a href="/" class="add-more">Add more items</a>
+  <div class="cart-items-container">
+    <% for(let cartItem of Object.values(session.cart.foodItems)) { %>
+      <div class="cart-item">
+        <div class="left-cart">
+          <p class="item-qty"><%= cartItem.qty %> x</p>
+          <p class="item-name"><%= cartItem.item.name %></p>
+        </div>
+        <p class="item-price-total">$<%= cartItem.item.price * cartItem.qty %></p>
+      </div>
+    <% } %>
+  </div>
+  <% if(user) { %>
+    <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
+    <% } else { %>
+      <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
+      <% } %> 
+</section>
 
+<!-- 
 <div>
   <h2>This section will visible if there are items in the cart</h2>
   <% for(let cartItem of Object.values(session.cart.foodItems)) { %>
@@ -23,9 +45,7 @@
   </div>
   <% } %>
   <hr>
-  <p> Sub Total: <%= session.cart.totalPrice %></p>
-  <p>Tax: [14.975%]:</p>
-  <p>Total: </p>
+  <p>Total: $<%= session.cart.totalPrice %> </p>
   <% if(user) { %>
   <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
   <% } else { %>
@@ -33,7 +53,14 @@
     <% } %> 
 </div>
 
-<% } %>
+<% } %> -->
+
+
+
+
+
+
+
 
 
   <!-- <% if(user) { %>

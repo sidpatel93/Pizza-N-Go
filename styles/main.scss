@@ -47,10 +47,10 @@ header::after {
 
 .category {
   margin: 2rem 0 0 1rem;
-  cursor: pointer;
 }
 
 .heading-container {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,7 +126,7 @@ header::after {
 }
 
 
-// LOGIN PAGE
+// LOGIN/REGISTER
 .center-align {
   display: flex;
   align-items: center;
@@ -160,7 +160,7 @@ header::after {
   }
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
 }
@@ -207,8 +207,7 @@ header::after {
 }
 
 
-// REGISTER PAGE
-
+// Register specific
 .form-container.register {
   display: flex;
   flex-direction: column;
@@ -218,7 +217,35 @@ header::after {
   }
 }
 
-.register-form {
+
+// CART PAGE
+.cart-container {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+}
+
+.add-more {
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
+.cart-items-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 .5rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.left-cart {
+  display: flex;
+
+  & p:nth-of-type(2) {
+    margin-left: 1rem;
+  }
 }
