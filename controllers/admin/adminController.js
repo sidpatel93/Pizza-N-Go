@@ -75,6 +75,7 @@ function adminController(db) {
       // Task send sms to user.
       // Change the clicked order status to in progress
       const OrderId = req.body.OrderId
+      const estimatedTime = req.body.estimatedTime
       console.log("order to update is:", OrderId)
       
       db.query(`
@@ -83,7 +84,11 @@ function adminController(db) {
       where orders.id =$1`, [OrderId])
       .then((data) => {
         // Put logic for sending the sms here for notification.
-        console.log("order is updated");
+        //console.log("order is updated");
+        // on sucessfull order change send the events to particular user
+        const eventEmitter = req.app.get('eventEmitter')
+        eventEmitter.emit('orderInProgress', {OrderId, estimatedTime})
+        
         return res.redirect('/admin/orders/new')
       })
       .catch((err) => {

@@ -107,3 +107,7 @@ io.on("connection", (socket)=> {
 eventEmitter.on('userPlacedOrder', (data)=> {
   io.to('adminRoom').emit('userPlacedOrder', data)
 })
+
+eventEmitter.on('orderInProgress', (data)=> {
+  io.to(`order_${data.OrderId}`).emit('orderInProgress', data)
+})

@@ -73,12 +73,35 @@ $(document).ready(function(){
   });
 
 
-  // let socket = io()
-  // let adminPath = window.location.pathname
-  // if(adminPath.includes('admin')) {
-  //   socket.emit('join', 'adminRoom')
-  // }
+  // Order Update Element
+  const createOrderUpdateElement = (data) => {
+    let orderUpdateElement = $(`
+   
+    `)
+  }
 
+
+
+
+  // Users side cocket connection, Once a user goes to /user/orders page make a room for that user
+  let socket = io()
+  let userOrdersPath = window.location.pathname
+  // get the order detail from the userOrders page from hidden input
+  let hiddenInputOrder = document.querySelector('#hiddenInputOrder')
+  // check if the input contain the value or not, if it does then asssign it or null.
+  let hiddenOrder = hiddenInputOrder ? hiddenInputOrder.value : null;
+  // Parse the json string in the js Object
+  hiddenOrder = JSON.parse(hiddenOrder)
+  //console.log(hiddenOrder)
+  if(hiddenOrder){
+    socket.emit('join', `order_${hiddenOrder.id}`)
+  }
+
+  socket.on('orderInProgress', (data)=> {
+    console.log('This is client side socket. Data received is: ', data)
+    // here we will create an element which shws the updated status
+
+  })
 
 });
 
