@@ -8,7 +8,9 @@ header {
 
 .top-image {
   background-color: #FF6738;
-  height: 16rem;
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+  height: 10rem;
+  
 }
 
 .resto-details {
@@ -124,42 +126,21 @@ header::after {
 }
 
 
-
-// .pop-up {
-//   display: none; 
-//   position: fixed;
-//   z-index: 1; 
-//   padding-top: 100px;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%; 
-//   overflow: auto;
-//   background-color: rgba(0,0,0,0.44);
-// }
-
-// .pop-up-content {
-//   background-color: #fefefe;
-//   margin: auto;
-//   padding: 20px;
-//   border: 1px solid #888;
-//   width: 80%;
-//   height: 80%;
-//   border-radius: 8px;
-// }
-
-// .close {
-//   cursor: pointer;
-// }
-
-
 // LOGIN PAGE
+.center-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.login-container {
+
+.form-container {
   display: flex;
   flex-direction: column;
   margin: 1rem 2rem;
   height: 100%;
+  width: 20.6rem;
+  align-self: flex-start;
 
   & p {
     margin-top: 2rem;
@@ -198,14 +179,14 @@ header::after {
     display: inline;
   }
 
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .form-inputs {
   height: 13rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 4.2rem;
+  margin-bottom: 3.2rem;
 
   & .input-container {
     display: flex;
@@ -222,5 +203,21 @@ header::after {
     padding: 1rem;
     height: 2.5rem;
     border-radius: 8px;
+  }
+}
+
+
+// REGISTER PAGE
+.smaller {
+  height: 10rem;
+}
+
+.form-container.register {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  & .form-inputs {
+    height: 26rem;
+    margin-bottom: 2rem;
   }
 }

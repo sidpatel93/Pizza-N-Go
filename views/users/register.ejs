@@ -1,4 +1,41 @@
-<div class="container">
+<div class="top-image smaller"></div>
+<section class="form-container register">
+    <form action="/register" method="POST" class="register-form">
+        <div class="form-header">
+            <h2>Welcome</h2>
+            <p>Hello there, sign up to continue!</p>    
+        </div>
+				<div class="form-inputs">
+
+					<div class="input-container">
+						<label for="name">Name</label>
+            <input type="text" name="name" placeholder="Enter your name">
+					</div>
+
+					<div class="input-container">
+						<label for="phone_number">Number</label>
+						<input type="text" name="phone_number" placeholder="Enter your number">
+					</div>
+
+					<div class="input-container">
+						<label for="email_address">Email</label>
+						<input type="text" name="email_address" placeholder="Enter your email">
+					</div>
+
+					<div class="input-container">
+						<label>Password</label>
+						<input type="password" name="password" placeholder="Enter your password">
+					</div>
+
+				</div>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="/login">Register</a></p>
+</section>
+
+
+
+<!-- <div class="container">
   <div class="row">
       <div class="col-md-4 offset-md-4">
           <div class="login-form bg-light mt-4 p-4">
@@ -31,4 +68,4 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->

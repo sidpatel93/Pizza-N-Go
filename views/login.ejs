@@ -1,21 +1,26 @@
 <div class="top-image"></div>
-<section class="login-container">
-    <form action="/login" method="POST" class="login-form">
-        <div class="form-header">
-            <h2>Welcome Back</h2>
-            <p>Login to your account</p>    
-        </div>
-				<div class="form-inputs">
-					<div class="input-container">
-						<label for="email_address">Email</label>
-						<input type="text" name="email_address" placeholder="Enter your email">
+<div class="center-align">
+	<section class="form-container login">
+			<form action="/login" method="POST" class="login-form">
+					<div class="form-header">
+							<h2>Welcome Back</h2>
+							<p>Login to your account</p>    
 					</div>
-					<div class="input-container">
-						<label>Password</label>
-						<input type="password" name="password" placeholder="Enter your password">
+					<div class="form-inputs">
+	
+						<div class="input-container">
+							<label for="email_address">Email</label>
+							<input type="text" name="email_address" placeholder="Enter your email">
+						</div>
+	
+						<div class="input-container">
+							<label>Password</label>
+							<input type="password" name="password" placeholder="Enter your password">
+						</div>
+						
 					</div>
-				</div>
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="/register">Register</a></p>
-</section>
+					<button type="submit">Login</button>
+			</form>
+			<p>Don't have an account? <a href="/register">Register</a></p>
+	</section>
+</div>
