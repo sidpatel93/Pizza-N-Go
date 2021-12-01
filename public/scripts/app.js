@@ -76,8 +76,13 @@ $(document).ready(function(){
   // Order Update Element
   const createOrderUpdateElement = (data) => {
     let orderUpdateElement = $(`
-   
+    <h3>Order Update</h3>
+    <h3>Order Number: ${data.OrderId}</h5>
+    <div class="card-body">
+    <h5>It will take approximately <strong>${data.estimatedTime} mins.</strong> to complete your order.</h5>
+    </div>
     `)
+    return orderUpdateElement
   }
 
 
@@ -99,8 +104,12 @@ $(document).ready(function(){
 
   socket.on('orderInProgress', (data)=> {
     console.log('This is client side socket. Data received is: ', data)
-    // here we will create an element which shws the updated status
-
+    // here we will create an element which shows the updated status
+    let divToAdd = $('#orderUpdate')
+    divToAdd.empty()
+    let orderInProgressUpdate = createOrderUpdateElement(data)
+    divToAdd.append(orderInProgressUpdate)
+    divToAdd.css("visibility","visible")
   })
 
 });
