@@ -7,7 +7,7 @@
   <h3>Order Successful</h3>
   <i class="checkmarkOrder fa-10x far fa-check-square"></i>
   <h3>Order Number: <%= order.id %></h5>
-  <h5>Order placed at: <%= moment(order.order_time).format('LLL') %></h5>
+  <h5>Order placed at: <%= moment(order.order_time).tz("America/Toronto").format('LLL') %></h5>
   <div class="card-body">
     <h6>Your Order:</h6>
     <ul>

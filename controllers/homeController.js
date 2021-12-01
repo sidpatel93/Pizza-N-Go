@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const moment = require('moment')
+//const moment = require('moment')
+const moment = require('moment-timezone')
 
 function homeController(db) {
 

@@ -8,34 +8,30 @@ $(document).ready(function(){
   //   estimatedTimeForm.submit()
   // })
 
- $("#placeOrder").click(()=> {
-    console.log("order is placed")
-  })
+
+  console.log("admin.js is loaded");
 
   const adminOrders = $('#adminOrders');
   orders = []
-  let newElements
   axios.get('/admin/orders/new', {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
   })
   .then( res => {
-    orders = res.data
-    console.log("This is json data from ajax request")
+    orders = [...res.data]
     $("#adminOrders").empty()
    let newElements = generateOrders(orders)
-    adminOrders.innerHTML = newElements
-
+    //adminOrders.innerHTML = newElements
+    adminOrders.append = newElements
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
- 
 
   const generateSingleOrder = (order) => {
     let orderId = order.id;
     let orderUser =order.username; 
-    let orderTime = order.order_time;
+    let orderTime = moment(order.order_time).format('LLL');
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
@@ -45,7 +41,7 @@ $(document).ready(function(){
     <div class="card-body">
       <div>
         <h5>Order Detail:</h5>
-        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
+        <div clss='listItems'>${listItems(Object.values(order.items))}</div>
       </div>
       <div>
         <h5>Customer</h5>
@@ -53,6 +49,11 @@ $(document).ready(function(){
         <p>Number: ${orderUserPhone} </p>
       </div>
     </div>
+    <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
+      <input type="hidden" name="OrderId" value="${orderId}">
+      <input type="text" name="estimatedTime" placeholder="Enter time">
+      <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn btn-dark">Send SMS</a>
+    </form>
   </div>
     `)
 
@@ -79,9 +80,24 @@ $(document).ready(function(){
         let singleItem = generateSingleitem(item)
         itemsDiv += singleItem;
       }
-      console.log(itemsDiv)
       return itemsDiv;
   }
+
+  let socket = io();
+  let adminPath = window.location.pathname
+
+  if(adminPath.includes('admin')) {
+    socket.emit('join', 'adminRoom')
+  }
+
+  socket.on('userPlacedOrder', (order)=> {
+    // console.log("socket is activating in admin", order)
+    // console.log("all orders", orders)
+    orders.unshift(order);
+    adminOrders.empty();
+    const createElements = generateOrders(orders)
+    adminOrders.append = createElements
+  })
 
 
 })

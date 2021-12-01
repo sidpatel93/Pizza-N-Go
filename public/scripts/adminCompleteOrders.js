@@ -1,19 +1,20 @@
 $(document).ready(function(){
 
-  console.log("inProcess.js is loaded");
+  console.log("complete orders.js is loaded");
 
-  const adminInProgressOrders = $('#adminInProgressOrders');
+  const adminInProgressOrders = $('#adminCompletedOrders');
   orders = []
   let newElements
-  axios.get('/admin/orders/inProgress', {
+  axios.get('/admin/orders/complete', {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
   })
   .then( res => {
     orders = res.data
-    $("#adminInProgressOrders").empty()
+    $("#adminCompletedOrders").empty()
     let newElements = generateOrders(orders)
+    console.log(orders)
    adminInProgressOrders.innerHTML = newElements
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
@@ -40,10 +41,6 @@ $(document).ready(function(){
         <p>Number: ${orderUserPhone} </p>
       </div>
     </div>
-    <form action="/admin/orders/complete" method="POST" id="${orderId}orderComplete">
-      <input type="hidden" name="OrderId" value="${orderId}">
-      <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn btn-dark">Order is ready!</a>
-    </form>
   </div>
     `)
 
@@ -54,7 +51,7 @@ $(document).ready(function(){
        //$("#adminOrders").empty()
       for(let order of orders) {
         let singleorder = generateSingleOrder(order)
-        $("#adminInProgressOrders").append(singleorder)
+        $("#adminCompletedOrders").append(singleorder)
       }
   }
 
