@@ -4,6 +4,13 @@ header {
   display: flex;
   flex-direction: column;
 
+  &::after {
+    content: '';
+    margin: 1rem 0 0 1rem;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.19);
+    width: 95%;
+  }
 }
 
 .top-image {
@@ -28,14 +35,6 @@ header {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.44);
   display: inline;
-}
-
-header::after {
-  content: '';
-  margin: 1rem 0 0 1rem;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.19);
-  width: 95%;
 }
 
 // MAIN CONTAINER WITH MENU CATEGORIES AND ITEMS
@@ -244,33 +243,74 @@ header::after {
 .cart-container {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
+  margin: 1rem 1rem;
+  height: 100%;
+  width: 28rem;
+  align-self: flex-start;
 }
 
-.add-more {
-  align-self: center;
-  margin-bottom: 2rem;
+.arrow-home {
+  margin: 0 0 1rem 1rem;
+  font-size: 1.5rem;
+  width: fit-content;
 }
 
 .cart-items-container {
   display: flex;
   flex-direction: column;
-  margin: 0 .5rem;
 }
 
 .cart-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2.5rem;
+  height: 6rem;
+  align-items: center;
 }
 
 .left-cart {
   display: flex;
+  align-items: center;
 
-  & p:nth-of-type(2) {
+  & p:nth-of-type(2), img {
     margin-left: 1rem;
   }
+
+  & img {
+    width: 5rem;
+    max-height: 5rem;
+  }
 }
+
+.item-price-total, .cart-item-name {
+  color: rgba(0, 0, 0, 0.591);
+}
+
+.cart-total-container {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+  margin: 3rem 0;
+  font-weight: bold;
+}
+
+#submitOrder {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+
+}
+.submit-btn {
+  border-radius: 8px;
+  background-color: #00a87bb5;
+  border:#00A87C solid 2px;
+  text-align: center;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 3px;
+  margin: 0.3rem;
+}
+
+
+
 
 
 // UserOrder

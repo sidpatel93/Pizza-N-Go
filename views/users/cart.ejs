@@ -1,76 +1,42 @@
 <!-- put the below code in the if else condition bleck to check if the cart is empty or not and based
   on that show the content -->
 
-
 <!-- Show this page if the cart is empty -->
 <div class="top-image"></div>
 <% if (!session.cart) { %>
-
-<div>
-  <h2> This section will visible if the cart is empty</h2>
-</div>
-
-<% } else {%>
-<!-- Show this when there is something in the cart -->
-<section class="cart-container">
-  <a href="/" class="add-more">Add more items</a>
-  <div class="cart-items-container">
-    <% for(let cartItem of Object.values(session.cart.foodItems)) { %>
-      <div class="cart-item">
-        <div class="left-cart">
-          <p class="item-qty"><%= cartItem.qty %> x</p>
-          <p class="item-name"><%= cartItem.item.name %></p>
+  
+  <div>
+    <h2> This section will visible if the cart is empty</h2>
+  </div>
+  
+  <% } else {%>
+    <div class="center-align">
+  <!-- Show this when there is something in the cart -->
+  <section class="cart-container">
+    <a href="/" class="arrow-home"><i class="fas fa-arrow-left"></i></a>
+    <div class="cart-items-container">
+      <h2>Order Summary</h2>
+      <% for(let cartItem of Object.values(session.cart.foodItems)) { %>
+        <%= console.log(cartItem.photo_url)%>
+        <div class="cart-item item">
+          <div class="left-cart">
+            <p class="item-qty"><%= cartItem.qty %> x</p>
+            <img class="cart-img item-img" src=<%= cartItem.item.photo_url %>>
+            <p class="cart-item-name"><%= cartItem.item.name %></p>
+          </div>
+          <p class="item-price-total">$<%= cartItem.item.price * cartItem.qty %>.00</p>
         </div>
-        <p class="item-price-total">$<%= cartItem.item.price * cartItem.qty %></p>
-      </div>
-    <% } %>
-  </div>
-  <% if(user) { %>
-    <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="btn btn-dark">Place Order</a></form>
-    <% } else { %>
-      <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
-      <% } %> 
-</section>
-
-<!-- 
-<div>
-  <h2>This section will visible if there are items in the cart</h2>
-  <% for(let cartItem of Object.values(session.cart.foodItems)) { %>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"><%= cartItem.item.name %></h5>
-      <p class="card-text">Price: <%= cartItem.item.price * cartItem.qty %></p>
-      <a href="#" class="btn btn-primary"> Qty: <%= cartItem.qty %></a>
+      <% } %>
     </div>
-  </div>
-  <% } %>
-  <hr>
-  <p>Total: $<%= session.cart.totalPrice %> </p>
-  <% if(user) { %>
-  <form action="/orders" method="POST" id="submitOrder"><button type="submit" id="placeOrder" class="btn btn-dark">Place Order</button></form>
-  <% } else { %>
-    <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
-    <% } %> 
+    <div class="cart-total-container">
+      <p>Cart Total: </p>
+      <p>$<%= session.cart.totalPrice %></p>
+    </div>
+
+    <% if(user) { %>
+      <form action="/orders" method="POST" id="submitOrder"><a type="submit" id="placeOrder" class="submit-btn">Place Order</a></form>
+      <% } else { %>
+        <a class="submit-btn" href="/login" role="button">Login to place an order</a>
+        <% } %> 
+  </section>
 </div>
-
-<% } %> -->
-
-
-
-
-
-
-
-
-
-  <!-- <% if(user) { %>
-    <form action="/orders" method="POST" id="placeOrder">
-    <a onclick="document.getElementById('placeOrder').submit()" class="btn btn-primary" href="#" role="button">Check out</a>
-    </form>
-  <% } else { %>
-    <a class="btn btn-primary" href="/login" role="button">Login to place an order</a>
-  <% } %> 
-</form> -->
-
-
-
