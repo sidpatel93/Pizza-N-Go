@@ -99,7 +99,6 @@ const foodApp = app.listen(PORT, () => {
 const io = require('socket.io')(foodApp)
 
 io.on("connection", (socket)=> {
-    console.log(socket.id)
     socket.on('join', (roomName) => {
       socket.join(roomName)
     })

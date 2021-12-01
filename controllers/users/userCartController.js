@@ -58,7 +58,11 @@ function cartController(db) {
           // send events that the order is placed
 
           const eventEmitter = req.app.get('eventEmitter')
-          eventEmitter.emit('userPlacedOrder', data.rows[0])
+          const dataToSend = data.rows[0]
+          dataToSend["username"] = req.user.name;
+          dataToSend["userphone"] = req.user.phone_number
+          console.log(dataToSend)
+          eventEmitter.emit('userPlacedOrder', dataToSend)
 
           delete req.session.cart;
           return res.redirect('/user/orders')

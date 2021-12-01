@@ -7,6 +7,8 @@ $(document).ready(function(){
   //   const estimatedTimeForm = $('.sendTime')
   //   estimatedTimeForm.submit()
   // })
+
+
   console.log("admin.js is loaded");
 
   const adminOrders = $('#adminOrders');
@@ -17,10 +19,11 @@ $(document).ready(function(){
     }
   })
   .then( res => {
-    orders = res.data
+    orders = [...res.data]
     $("#adminOrders").empty()
    let newElements = generateOrders(orders)
-    adminOrders.innerHTML = newElements
+    //adminOrders.innerHTML = newElements
+    adminOrders.append = newElements
   }).catch(err => {
     console.log("Error fetching and creating the orders",err)
   })
@@ -28,7 +31,7 @@ $(document).ready(function(){
   const generateSingleOrder = (order) => {
     let orderId = order.id;
     let orderUser =order.username; 
-    let orderTime = order.order_time;
+    let orderTime = moment(order.order_time).format('LLL');
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
@@ -82,16 +85,18 @@ $(document).ready(function(){
 
   let socket = io();
   let adminPath = window.location.pathname
-  
+
   if(adminPath.includes('admin')) {
     socket.emit('join', 'adminRoom')
   }
 
   socket.on('userPlacedOrder', (order)=> {
-    console.log("socket is activating in admin")
+    // console.log("socket is activating in admin", order)
+    // console.log("all orders", orders)
     orders.unshift(order);
-    adminOrders.innerHTML = ''
-    adminOrders.innerHTML = generateOrders(orders)
+    adminOrders.empty();
+    const createElements = generateOrders(orders)
+    adminOrders.append = createElements
   })
 
 
