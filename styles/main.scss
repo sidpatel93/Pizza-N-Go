@@ -8,7 +8,9 @@ header {
 
 .top-image {
   background-color: #FF6738;
-  height: 16rem;
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+  height: 10rem;
+  
 }
 
 .resto-details {
@@ -45,7 +47,6 @@ header::after {
 
 .category {
   margin: 2rem 0 0 1rem;
-  cursor: pointer;
 }
 
 // UserOrder
@@ -68,6 +69,7 @@ header::after {
 }
 
 .heading-container {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -143,42 +145,24 @@ header::after {
 }
 
 
-
-// .pop-up {
-//   display: none;
-//   position: fixed;
-//   z-index: 1;
-//   padding-top: 100px;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: auto;
-//   background-color: rgba(0,0,0,0.44);
-// }
-
-// .pop-up-content {
-//   background-color: #fefefe;
-//   margin: auto;
-//   padding: 20px;
-//   border: 1px solid #888;
-//   width: 80%;
-//   height: 80%;
-//   border-radius: 8px;
-// }
-
-// .close {
-//   cursor: pointer;
-// }
+// LOGIN/REGISTER
+.center-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 // LOGIN PAGE
 
-.login-container {
+
+.form-container {
   display: flex;
   flex-direction: column;
   margin: 1rem 2rem;
   height: 100%;
+  width: 20.6rem;
+  align-self: flex-start;
 
   & p {
     margin-top: 2rem;
@@ -198,7 +182,7 @@ header::after {
   }
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
 }
@@ -217,14 +201,14 @@ header::after {
     display: inline;
   }
 
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .form-inputs {
   height: 13rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 4.2rem;
+  margin-bottom: 3.2rem;
 
   & .input-container {
     display: flex;
@@ -233,7 +217,7 @@ header::after {
   }
 
   & label {
-    margin-bottom: .5rem;
+    margin-bottom: .2rem;
     color: rgba(0, 0, 0, 0.44);
   }
 
@@ -243,3 +227,67 @@ header::after {
     border-radius: 8px;
   }
 }
+
+
+// Register specific
+.form-container.register {
+  display: flex;
+  flex-direction: column;
+  & .form-inputs {
+    height: 26rem;
+    margin-bottom: 2rem;
+  }
+}
+
+
+// CART PAGE
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.add-more {
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
+.cart-items-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 .5rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.left-cart {
+  display: flex;
+
+  & p:nth-of-type(2) {
+    margin-left: 1rem;
+  }
+}
+
+
+// UserOrder
+.main-user-order {
+  width: 40%;
+  margin-top: 10em;
+  border-radius: 8px;
+  padding: 2em;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkmarkOrder {
+  color: #FF6738;
+  size: 9x;
+} 

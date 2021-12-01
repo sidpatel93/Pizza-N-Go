@@ -1,34 +1,38 @@
-<div class="container">
-  <div class="row">
-      <div class="col-md-4 offset-md-4">
-          <div class="login-form bg-light mt-4 p-4">
-              <form action="/register" method="POST" class="row g-3">
-                  <h4>Sign Up!</h4>
-                  <div class="col-12">
-                      <label>Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Name">
-                  </div>
-                  <div class="col-12">
-                    <label>Email</label>
-                    <input type="text" name="email_address" class="form-control" placeholder="Email">
-                </div>
-                  <div class="col-12">
-                    <label>Phone Number</label>
-                    <input type="text" name="phone_number" class="form-control" placeholder="Phone Number">
-                </div>
-                  <div class="col-12">
-                      <label>Password</label>
-                      <input type="password" name="password" class="form-control" placeholder="Password">
-                  </div>
-                  <div class="col-12">
-                      <button type="submit" class="btn btn-dark float-end">Sign Up</button>
-                  </div>
-              </form>
-              <hr class="mt-4">
-              <div class="col-12">
-                  <p class="text-center mb-0">Already have an account? <a href="/login">Login</a></p>
-              </div>
-          </div>
-      </div>
-  </div>
+<div class="top-image"></div>
+<div class="center-align">
+	<section class="form-container register">
+			<form action="/register" method="POST" class="form">
+					<div class="form-header">
+							<h2>Welcome</h2>
+							<p>Hello there, sign up to continue!</p>    
+					</div>
+					<div class="form-inputs">
+	
+						<div class="input-container">
+							<label for="name">Name</label>
+							<input type="text" name="name" placeholder="Enter your name">
+						</div>
+	
+						<div class="input-container">
+							<label for="phone_number">Number</label>
+							<input type="text" name="phone_number" placeholder="Enter your number">
+						</div>
+	
+						<div class="input-container">
+							<label for="email_address">Email</label>
+							<input type="text" name="email_address" placeholder="Enter your email">
+						</div>
+	
+						<div class="input-container">
+							<label>Password</label>
+							<input type="password" name="password" placeholder="Enter your password">
+						</div>
+	
+					</div>
+					<button type="submit">Register</button>
+			</form>
+			<p>Already have an account? <a href="/login">Login</a></p>
+	</section>
 </div>
+
+
