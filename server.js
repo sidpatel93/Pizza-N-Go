@@ -111,3 +111,7 @@ eventEmitter.on('userPlacedOrder', (data)=> {
 eventEmitter.on('orderInProgress', (data)=> {
   io.to(`order_${data.OrderId}`).emit('orderInProgress', data)
 })
+
+eventEmitter.on('orderComplete', (data)=> {
+  io.to(`order_${data.OrderId}`).emit('orderComplete', data)
+})

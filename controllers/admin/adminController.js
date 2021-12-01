@@ -106,6 +106,9 @@ function adminController(db) {
       where orders.id = $1`, [OrderId])
       .then((data) => {
         //send notification to customer about the order completion here.
+        const eventEmitter = req.app.get('eventEmitter')
+        eventEmitter.emit('orderComplete', {OrderId})
+
         return res.redirect('/admin/orders/inProgress')
       })
       .catch((err) => {

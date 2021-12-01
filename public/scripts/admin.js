@@ -91,8 +91,6 @@ $(document).ready(function(){
   }
 
   socket.on('userPlacedOrder', (order)=> {
-    // console.log("socket is activating in admin", order)
-    // console.log("all orders", orders)
     orders.unshift(order);
     adminOrders.empty();
     const createElements = generateOrders(orders)

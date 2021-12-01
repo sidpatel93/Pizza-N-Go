@@ -77,12 +77,22 @@ $(document).ready(function(){
   const createOrderUpdateElement = (data) => {
     let orderUpdateElement = $(`
     <h3>Order Update</h3>
-    <h3>Order Number: ${data.OrderId}</h5>
     <div class="card-body">
     <h5>It will take approximately <strong>${data.estimatedTime} mins.</strong> to complete your order.</h5>
     </div>
     `)
     return orderUpdateElement
+  }
+
+  // Order Complete Element
+  const createOrderCompleteElement = (data) => {
+    let orderCompleteElement = $(`
+    <h3>Order is ready for pick up</h3>
+    <div class="card-body">
+    <h5>Your Order# <strong>${data.OrderId}</strong> is ready for pick up!!</h5>
+    </div>
+    `)
+    return orderCompleteElement
   }
 
 
@@ -103,14 +113,24 @@ $(document).ready(function(){
   }
 
   socket.on('orderInProgress', (data)=> {
-    console.log('This is client side socket. Data received is: ', data)
     // here we will create an element which shows the updated status
     let divToAdd = $('#orderUpdate')
+    console.log("order update status", data)
     divToAdd.empty()
     let orderInProgressUpdate = createOrderUpdateElement(data)
     divToAdd.append(orderInProgressUpdate)
     divToAdd.css("visibility","visible")
   })
+
+  socket.on('orderComplete', (data)=> {
+    let divToAdd = $('#orderUpdate')
+    console.log("order complete status", data)
+    divToAdd.empty()
+    let orderCompleteUpdate = createOrderCompleteElement(data)
+    divToAdd.append(orderCompleteUpdate)
+    divToAdd.css("visibility","visible")
+  })
+
 
 });
 
