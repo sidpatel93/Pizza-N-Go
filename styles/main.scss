@@ -5,7 +5,7 @@
 }
 
 // CUSTOMER HOME PAGE HEADER
-header {
+.top-display {
   height: 30%;
   display: flex;
   flex-direction: column;
@@ -314,7 +314,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 6rem;
 
   & h2 {
     font-weight: 600;
@@ -357,4 +357,50 @@ header {
 .checkmarkOrder {
   color: #FF6738;
   size: 9x;
-} 
+}
+
+
+// ADMIN PAGE
+
+// Admin Navbar
+.admin-header h2 {
+  margin: 1rem 1rem;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+.admin-nav {
+  display: flex;
+  border: 1px solid black;
+  width: 90%;
+  max-width: 26rem;
+  margin: 0 1rem 2rem 1rem;
+  border-radius: 8px;
+  & ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    & li {
+      width: 100%;
+      text-align: center;
+      
+      & .active {
+        border-radius: 8px;
+        background-color: #000;
+        color: #fff;
+      }
+
+      & a {
+        color: #000;
+      }
+    }
+  }
+}
+
+// Orders (general)
+
+

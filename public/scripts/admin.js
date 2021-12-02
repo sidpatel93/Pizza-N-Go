@@ -35,18 +35,28 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="card" style="width: 18rem;">
-    <h3>Order Number: ${orderId} </h3>
-    <p>${orderTime}</p>
-    <div class="card-body">
-      <div>
-        <h5>Order Detail:</h5>
-        <div clss='listItems'>${listItems(Object.values(order.items))}</div>
+    <div class="order">
+      <div class="order-header">
+        <h3>#${orderId} </h3>
+        <p>${orderTime}</p>
       </div>
-      <div>
+      <div class="order-details">
+        <h5>Order Detail:</h5>
+        <div >${listItems(Object.values(order.items))}</div>
+      </div>
+      <div class="customer-details">
         <h5>Customer</h5>
         <p>Name: ${orderUser} </p>
         <p>Number: ${orderUserPhone} </p>
+      </div>
+
+      
+    <div>
+      <div>
+        
+      </div>
+      <div>
+        
       </div>
     </div>
     <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
@@ -54,6 +64,7 @@ $(document).ready(function(){
       <input type="text" name="estimatedTime" placeholder="Enter time">
       <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn btn-dark">Send SMS</a>
     </form>
+  </div>
   </div>
     `)
 
