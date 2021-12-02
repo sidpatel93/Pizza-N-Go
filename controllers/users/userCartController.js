@@ -39,7 +39,7 @@ function cartController(db) {
         (cart.totalQty += 1), (cart.totalPrice += req.body.price);
       }
 
-      res.json({ data: "sending response back for updated cart." });
+      res.json({ totalQty: req.session.cart.totalQty });
     },
 
      placeOrder: (req, res) => {

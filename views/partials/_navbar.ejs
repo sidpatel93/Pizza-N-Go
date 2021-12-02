@@ -17,7 +17,7 @@
           </li>
           <ul class="nav-links">
             <li>
-              <a class="navbarCart" href="/cart">Cart</a>
+              <a class="navbarCart" href="/cart">Cart (<%= session.cart ? session.cart.totalQty : " "%>)</a>
             </li>
             <form action="/logout" method="POST" id="logoutForm">
               <li>
@@ -35,7 +35,7 @@
       <ul class="nav-links">
         <li><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
-        <li><a class="navbarCart"href="/cart">Cart</a></li>
+        <li><a class="navbarCart"href="/cart">Cart (<%= session.cart ? session.cart.totalQty : " "%>)</a></li>
       </ul>
     </ul>
   <% } %>
