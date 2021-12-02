@@ -13,7 +13,7 @@
       <h6>Your Order:</h6>
       <ul>
         <% for((items) of Object.values(order.items)) { %>
-      <li><p class="card-title"><%= items.item.name %> Qty: <%= items.qty %></p></li>
+      <li><p class="card-title"><%= items.qty %> x <%= items.item.name %></p></li>
       <% } %>
     </ul>
     </div>

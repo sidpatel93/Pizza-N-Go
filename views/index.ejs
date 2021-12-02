@@ -24,23 +24,25 @@
      <i class="arrow-btn fas fa-chevron-down"></i>
    </div>
    <div class="items-container pizza">
-     <% for (let fooditem of fooditems) { %>
-      <% if (fooditem.category === 'pizza')  { %>
-        <div class="item" data-id="<%=fooditem.id %>" id="<%=fooditem.id%>">
-          <div class="left">
-            <h5 class="item-name"><%=fooditem.name%></h5>
-            <p class="item-description"><%=fooditem.description%></p>
-            <p class="item-price">$ <%=fooditem.price%></p>
-          </div>
-          <div class="right">
-            <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
-            <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
-          </div>
-      </div>
-      
-        <% } %>  
-     <% } %>
+    <div class="grid-container">
+      <% for (let fooditem of fooditems) { %>
+       <% if (fooditem.category === 'pizza')  { %>
+         <div class="item desktop-item" data-id="<%=fooditem.id %>" id="<%=fooditem.id%>">
+           <div class="left">
+             <h5 class="item-name"><%=fooditem.name%></h5>
+             <p class="item-description"><%=fooditem.description%></p>
+             <p class="item-price">$ <%=fooditem.price%></p>
+           </div>
+           <div class="right">
+             <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+             <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
+           </div>
+       </div>
+       
+         <% } %>  
+      <% } %>
    </div>
+  </div>
  </section>
 
  <!-- DRINKS CATEGORY -->
@@ -50,21 +52,23 @@
     <i class="arrow-btn fas fa-chevron-down"></i>
   </div>
   <div class="items-container drinks hide">
-    <% for (let fooditem of fooditems) { %>
-     <% if (fooditem.category === 'drinks')  { %>
-       <div class="item">
-         <div class="left">
-           <h5 class="item-name"><%=fooditem.name%></h5>
-           <p class="item-description"><%=fooditem.description%></p>
-           <p class="item-price">$ <%=fooditem.price%></p>
-         </div>
-         <div class="right">
-           <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
-           <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
-         </div>
-     </div>
-       <% } %>  
-    <% } %>
+    <div class="grid-container">
+      <% for (let fooditem of fooditems) { %>
+       <% if (fooditem.category === 'drinks')  { %>
+         <div class="item desktop-item">
+           <div class="left">
+             <h5 class="item-name"><%=fooditem.name%></h5>
+             <p class="item-description"><%=fooditem.description%></p>
+             <p class="item-price">$ <%=fooditem.price%></p>
+           </div>
+           <div class="right">
+             <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+             <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
+           </div>
+       </div>
+         <% } %>  
+      <% } %>
+    </div>
   </div>
  </section>
 
@@ -76,21 +80,23 @@
     <i class="arrow-btn fas fa-chevron-down"></i>
   </div>
   <div class="items-container extras hide">
-    <% for (let fooditem of fooditems) { %>
-     <% if (fooditem.category !== 'pizza' && fooditem.category !== 'drinks')  { %>
-       <div class="item">
-         <div class="left">
-           <h5 class="item-name"><%=fooditem.name%></h5>
-           <p class="item-description"><%=fooditem.description%></p>
-           <p class="item-price">$ <%=fooditem.price%></p>
-         </div>
-         <div class="right">
-           <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
-           <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
-         </div>
-     </div>
-       <% } %>  
-    <% } %>
+    <div class="grid-container">
+      <% for (let fooditem of fooditems) { %>
+       <% if (fooditem.category !== 'pizza' && fooditem.category !== 'drinks')  { %>
+         <div class="item desktop-item">
+           <div class="left">
+             <h5 class="item-name"><%=fooditem.name%></h5>
+             <p class="item-description"><%=fooditem.description%></p>
+             <p class="item-price">$ <%=fooditem.price%></p>
+           </div>
+           <div class="right">
+             <img class="item-img" src=<%=fooditem.photo_url %> alt="<%=fooditem.name%> picture">
+             <a data-fooditem="<%= JSON.stringify(fooditem) %> " class="btn add-to-cart">+ Add</a>
+           </div>
+       </div>
+         <% } %>  
+      <% } %>
+    </div>
   </div>
  </section>
 
