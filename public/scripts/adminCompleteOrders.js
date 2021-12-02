@@ -27,21 +27,31 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="card" style="width: 18rem;">
-    <h3>Order Number: ${orderId} </h3>
+    <div class="order-container item">
+  <div class="order-header">
+    <h3>#${orderId} </h3>
     <p>${orderTime}</p>
-    <div class="card-body">
-      <div>
-        <h5>Order Detail:</h5>
-        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
-      </div>
-      <div>
-        <h5>Customer</h5>
-        <p>Name: ${orderUser} </p>
-        <p>Number: ${orderUserPhone} </p>
-      </div>
-    </div>
   </div>
+
+  <div class="order-details">
+    <h3>Order</h3>
+    <ul>${listItems(Object.values(order.items))}</ul>
+  </div>
+
+  <div class="customer-details no-bottom">
+    <h3>Customer</h3>
+    <ul>
+      <li>
+        <p class="customer-label">Name:</p>
+        <p>${orderUser}</p>
+      </li>
+      <li>
+        <p class="customer-label">Number:</p>
+        <p>${orderUserPhone}</p>
+      </li>
+    </ul>
+  </div>
+</div>
     `)
 
     return SingleOrderElement
@@ -58,7 +68,11 @@ $(document).ready(function(){
   const generateSingleitem = (item) => {
     let itemName = item.item.name
     let itemQty = item.qty
-    return `<li class="card-title">${itemName} Qty: ${itemQty}</li>`
+    return `
+    <li class="item-admin">
+      <p>${itemQty} x</p>
+      <p>${itemName}</p>
+    </li>`
   }
 
   const listItems = (itemsArray) => {

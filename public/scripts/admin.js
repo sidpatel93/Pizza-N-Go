@@ -35,37 +35,39 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="order">
+    <div class="order-container item">
       <div class="order-header">
         <h3>#${orderId} </h3>
         <p>${orderTime}</p>
       </div>
+
       <div class="order-details">
-        <h5>Order Detail:</h5>
-        <div >${listItems(Object.values(order.items))}</div>
-      </div>
-      <div class="customer-details">
-        <h5>Customer</h5>
-        <p>Name: ${orderUser} </p>
-        <p>Number: ${orderUserPhone} </p>
+        <h3>Order</h3>
+        <ul>${listItems(Object.values(order.items))}</ul>
       </div>
 
-      
-    <div>
-      <div>
-        
+      <div class="customer-details">
+        <h3>Customer</h3>
+        <ul>
+          <li>
+            <p class="customer-label">Name:</p>
+            <p>${orderUser}</p>
+          </li>
+          <li>
+            <p class="customer-label">Number:</p>
+            <p>${orderUserPhone}</p>
+          </li>
+        </ul>
       </div>
-      <div>
-        
+      <div class="sms-container">
+        <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
+          <label for="estimatedTime">Estimated time (minutes)</label>
+          <input type="hidden" name="OrderId" value="${orderId}">
+          <input type="text" name="estimatedTime" placeholder="Enter time">
+          <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn">Send SMS</a>
+        </form>
       </div>
     </div>
-    <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
-      <input type="hidden" name="OrderId" value="${orderId}">
-      <input type="text" name="estimatedTime" placeholder="Enter time">
-      <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn btn-dark">Send SMS</a>
-    </form>
-  </div>
-  </div>
     `)
 
     return SingleOrderElement
@@ -82,7 +84,12 @@ $(document).ready(function(){
   const generateSingleitem = (item) => {
     let itemName = item.item.name
     let itemQty = item.qty
-    return `<li class="card-title">${itemName} Qty: ${itemQty}</li>`
+    return `
+    <li class="item-admin">
+      <p>${itemQty} x</p>
+      <p>${itemName}</p>
+    </li>
+    `
   }
 
   const listItems = (itemsArray) => {
