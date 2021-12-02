@@ -37,7 +37,7 @@ function adminController(db) {
       from orders
       join users on orders.user_id = users.id
       where order_status ='inProgress'
-      order by order_time;`)
+      order by order_time DESC;`)
       .then(data => {
       const orderItems = data.rows;
       console.log(orderItems)
@@ -58,7 +58,7 @@ function adminController(db) {
       from orders
       join users on orders.user_id = users.id
       where order_status ='complete'
-      order by order_time;`)
+      order by order_time DESC;`)
       .then(data => {
       const orderItems = data.rows;
       console.log(orderItems)
