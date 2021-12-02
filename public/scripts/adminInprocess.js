@@ -26,25 +26,42 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="card" style="width: 18rem;">
-    <h3>Order Number: ${orderId} </h3>
-    <p>${orderTime}</p>
-    <div class="card-body">
-      <div>
-        <h5>Order Detail:</h5>
-        <div id='#listItems'>${listItems(Object.values(order.items))}</div>
+    <div class="order-container item">
+      <aside class="left-order">
+        <div class="order-header">
+          <h3>#${orderId} </h3>
+          <p>${orderTime}</p>
+        </div>
+
+        <div class="order-details">
+          <h3>Order</h3>
+          <ul>${listItems(Object.values(order.items))}</ul>
+        </div>
+
+        <div class="customer-details">
+          <h3>Customer</h3>
+          <ul>
+            <li>
+              <p class="customer-label">Name:</p>
+              <p>${orderUser}</p>
+            </li>
+            <li>
+              <p class="customer-label">Number:</p>
+              <p>${orderUserPhone}</p>
+            </li>
+          </ul>
+        </div>
+    
+      </aside>
+
+      <div class="sms-container">
+        <form action="/admin/orders/complete" method="POST" id="${orderId}orderComplete">
+          <input type="hidden" name="OrderId" value="${orderId}">
+          <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn">Order is ready!</a>
+        </form>
       </div>
-      <div>
-        <h5>Customer</h5>
-        <p>Name: ${orderUser} </p>
-        <p>Number: ${orderUserPhone} </p>
-      </div>
+
     </div>
-    <form action="/admin/orders/complete" method="POST" id="${orderId}orderComplete">
-      <input type="hidden" name="OrderId" value="${orderId}">
-      <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn btn-dark">Order is ready!</a>
-    </form>
-  </div>
     `)
 
     return SingleOrderElement

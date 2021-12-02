@@ -12,21 +12,21 @@ $(document).ready(function(){
   console.log("admin.js is loaded");
 
   const adminOrders = $('#adminOrders');
-  orders = []
+  orders = [];
   axios.get('/admin/orders/new', {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
   })
   .then( res => {
-    orders = [...res.data]
-    $("#adminOrders").empty()
-   let newElements = generateOrders(orders)
+    orders = [...res.data];
+    $("#adminOrders").empty();
+   let newElements = generateOrders(orders);
     //adminOrders.innerHTML = newElements
-    adminOrders.append = newElements
+    adminOrders.append = newElements;
   }).catch(err => {
-    console.log("Error fetching and creating the orders",err)
-  })
+    console.log("Error fetching and creating the orders",err);
+  });
 
   const generateSingleOrder = (order) => {
     let orderId = order.id;
@@ -35,68 +35,91 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="card" style="width: 18rem;">
-    <h3>Order Number: ${orderId} </h3>
-    <p>${orderTime}</p>
-    <div class="card-body">
-      <div>
-        <h5>Order Detail:</h5>
-        <div clss='listItems'>${listItems(Object.values(order.items))}</div>
-      </div>
-      <div>
-        <h5>Customer</h5>
-        <p>Name: ${orderUser} </p>
-        <p>Number: ${orderUserPhone} </p>
-      </div>
-    </div>
-    <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
-      <input type="hidden" name="OrderId" value="${orderId}">
-      <input type="text" name="estimatedTime" placeholder="Enter time">
-      <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn btn-dark">Send SMS</a>
-    </form>
-  </div>
-    `)
+      <div class="order-container item">
+        <aside class="left-order">
+          <div class="order-header">
+            <h3>#${orderId} </h3>
+            <p>${orderTime}</p>
+          </div>
 
-    return SingleOrderElement
+          <div class="order-details">
+            <h3>Order</h3>
+            <ul>${listItems(Object.values(order.items))}</ul>
+          </div>
+
+          <div class="customer-details">
+            <h3>Customer</h3>
+            <ul>
+              <li>
+                <p class="customer-label">Name:</p>
+                <p>${orderUser}</p>
+              </li>
+              <li>
+                <p class="customer-label">Number:</p>
+                <p>${orderUserPhone}</p>
+              </li>
+            </ul>
+          </div>
+        
+        </aside>
+
+        <div class="sms-container">
+          <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
+            <label for="estimatedTime">Estimated time (minutes)</label>
+            <input type="hidden" name="OrderId" value="${orderId}">
+            <input type="text" name="estimatedTime" placeholder="Enter time">
+            <a onClick="document.getElementById('${orderId}timeEstimate').submit()" id="sendEstimatedTime" class="btn">Send SMS</a>
+          </form>
+        </div>
+
+      </div>
+    `);
+
+    return SingleOrderElement;
 
   }
   const generateOrders = (orders) => {
        //$("#adminOrders").empty()
       for(let order of orders) {
-        let singleorder = generateSingleOrder(order)
-        $("#adminOrders").append(singleorder)
-      }
-  }
+        let singleorder = generateSingleOrder(order);
+        $("#adminOrders").append(singleorder);
+      };
+  };
 
   const generateSingleitem = (item) => {
-    let itemName = item.item.name
-    let itemQty = item.qty
-    return `<li class="card-title">${itemName} Qty: ${itemQty}</li>`
-  }
+    let itemName = item.item.name;
+    let itemQty = item.qty;
+    return `
+    <li class="item-admin">
+      <p>${itemQty} x</p>
+      <p>${itemName}</p>
+    </li>
+    `;
+  };
 
   const listItems = (itemsArray) => {
     let itemsDiv = '';
     for(let item of itemsArray) {
-        let singleItem = generateSingleitem(item)
+        let singleItem = generateSingleitem(item);
         itemsDiv += singleItem;
       }
       return itemsDiv;
   }
 
   let socket = io();
-  let adminPath = window.location.pathname
+  let adminPath = window.location.pathname;
 
   if(adminPath.includes('admin')) {
-    socket.emit('join', 'adminRoom')
-  }
+    socket.emit('join', 'adminRoom');
+  };
 
   socket.on('userPlacedOrder', (order)=> {
     orders.unshift(order);
     adminOrders.empty();
-    const createElements = generateOrders(orders)
-    adminOrders.append = createElements
-  })
+    const createElements = generateOrders(orders);
+    adminOrders.append = createElements;
+  });
 
 
-})
+});
 

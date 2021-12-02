@@ -2,14 +2,15 @@
 // Client facing scripts here
 $(document).ready(function(){
 
-
+  //let cartNumber = 0
+  //$('.navbarCart').text(` Cart (${cartNumber})`);
   // Console.log to check if this file if loaded in browser properly
   console.log("app.js is loaded");
 
   const addInCart = (foodItem) => {
     axios.post('/cart-update', foodItem)
     .then((res) => {
-        console.log(res);
+      $('.navbarCart').text(` Cart (${res.data.totalQty})`);
     }).catch((err) => {
       console.log(err);
     });
@@ -17,9 +18,13 @@ $(document).ready(function(){
 
   //Select all the add to cart buttons -> this will give an array of all the btns
   const addToCartBtn = document.querySelectorAll('.add-to-cart');
+
+
+
   // attach event listener on individual button to add it to cart
   addToCartBtn.forEach((btn) => {
     btn.addEventListener('click', (event) => {
+
       let foodItem = JSON.parse(btn.dataset.fooditem);
       addInCart(foodItem)
     })
@@ -54,7 +59,7 @@ $(document).ready(function(){
   const $categoryHeading = $('.heading-container');
   const $itemsContainer = $('.items-container');
 
-  
+
   //  Expand and hide menu items based on category
   $categoryHeading.each(function() {
     $(this).on('click', e => {

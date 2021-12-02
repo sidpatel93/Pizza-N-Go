@@ -5,7 +5,7 @@
 }
 
 // CUSTOMER HOME PAGE HEADER
-header {
+.top-display {
   height: 30%;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,6 @@ header {
   background-color: #FF6738;
   background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
   height: 10rem;
-  
 }
 
 .resto-details {
@@ -48,6 +47,7 @@ header {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+  margin-bottom: 4rem;
 }
 
 .category {
@@ -130,7 +130,7 @@ header {
   max-width: 97%;
   margin-top: 1rem;
   padding: 1rem;
-  box-shadow: 0px 4px 4px 0px #00000040;
+  box-shadow: 0px 4px 8px 0px #00000040;
   background-color: #FFF;
 }
 
@@ -347,7 +347,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 6rem;
 
   & h2 {
     font-weight: 600;
@@ -390,4 +390,168 @@ header {
 .checkmarkOrder {
   color: #FF6738;
   size: 9x;
-} 
+}
+
+
+// ADMIN PAGE
+
+// Admin Navbar
+.admin-header h2 {
+  margin: 1rem 1rem;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+.admin-nav {
+  display: flex;
+  width: fit-content;
+  max-width: 26rem;
+  margin: 2rem 0 0.2rem 1rem;
+  
+  & ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    & li {
+      width: 100%;
+
+      &:nth-of-type(1), &:nth-of-type(3) {
+        width: fit-content;
+      }
+
+      &:nth-of-type(2) {
+        width: 8rem;
+      }
+      
+      &:hover {
+        border-bottom: solid rgba(0, 0, 0, 0.19) 2px;
+      }
+
+      & a, & a:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+// Orders (general)
+#adminOrders, #adminInProgressOrders, #adminCompletedOrders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.order-container {
+  width: 97%;
+  flex-direction: column;
+}
+
+.order-header {
+  display: flex;
+  flex-direction: column;
+
+  & h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  &::after {
+    content: '';
+    margin: 0 0 1rem 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.19);
+  }
+}
+
+.order-details, .customer-details, .customer-details-completed {
+  display: flex;
+  flex-direction: column;
+  & h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  & ul {
+    list-style: none;
+    padding: 0;
+
+    & li {
+      display: flex;
+
+      & p:nth-of-type(2) {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.order-details, .customer-details {
+  &::after {
+    content: '';
+    margin: 0 0 1rem 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.19);
+  }
+}
+
+.customer-details {
+  & .customer-label {
+    color: rgba(0, 0, 0, 0.44);
+    width: 4rem;
+  }
+}
+
+.sms-container form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+
+  & label {
+    color: rgba(0, 0, 0, 0.44);
+    margin-bottom: .5rem;
+  }
+
+  & input[type=text] {
+    border-radius: 8px;
+    height: 2.5rem;
+    padding: 1rem;
+  }
+
+  & a {
+    width: 100%;
+    margin: 1rem 0 2rem 0;
+    height: 2.5rem;
+  }
+}
+
+
+// BREAKPOINTS FOR TABLETS AND LARGER
+@media only screen and (min-width: 768px) {
+  .order-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .left-order {
+    width: 80%;
+  }
+
+  .sms-container {
+    margin: 1rem 0 1rem 1rem;
+    align-self: center;
+     & form a {
+       width: 13rem;
+       text-align: center;
+     }
+  }
+
+  .completed {
+    flex-direction: column;
+  }
+}
