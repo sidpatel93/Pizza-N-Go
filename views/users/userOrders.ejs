@@ -2,24 +2,25 @@
 
 <% for(let order of userOrders) { %>
 <div class="center-align">
-
-<div class="main-user-order">
-  <h3>Order Successful</h3>
-  <i class="checkmarkOrder fa-10x far fa-check-square"></i>
-  <h3>Order Number: <%= order.id %></h5>
-  <input id='hiddenInputOrder' type="hidden" value="<%= JSON.stringify(order) %>">
-  <h5>Order placed at: <%= moment(order.order_time).tz("America/Toronto").format('LLL') %></h5>
-  <div class="card-body">
-    <h6>Your Order:</h6>
-    <ul>
-      <% for((items) of Object.values(order.items)) { %>
-    <li><p class="card-title"><%= items.item.name %> Qty: <%= items.qty %></p></li>
-    <% } %>
-  </ul>
+<div class="update-container">
+  <div class="main-user-order">
+    <h3>Order Successful</h3>
+    <i class="checkmarkOrder fa-10x far fa-check-square"></i>
+    <h3>Order Number: <%= order.id %></h5>
+    <input id='hiddenInputOrder' type="hidden" value="<%= JSON.stringify(order) %>">
+    <h5>Order placed at: <%= moment(order.order_time).tz("America/Toronto").format('LLL') %></h5>
+    <div class="card-body">
+      <h6>Your Order:</h6>
+      <ul>
+        <% for((items) of Object.values(order.items)) { %>
+      <li><p class="card-title"><%= items.item.name %> Qty: <%= items.qty %></p></li>
+      <% } %>
+    </ul>
+    </div>
+    <h5>Your order has been placed, expect a text message letting you know when to pick up your order.</h5>
   </div>
-  <h5>Your order has been placed, expect a text message letting you know when to pick up your order.</h5>
-</div>
-<div id='orderUpdate'>
+  <div id='orderUpdate'>
+  </div>
 </div>
 </div>
 

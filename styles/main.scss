@@ -54,48 +54,6 @@
   margin: 2rem 0 0 1rem;
 }
 
-// UserOrder
-
-.order-update-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10rem;
-}
-
-.main-user-order {
-  width: 90%;
-  max-width: 26rem;
-  border-radius: 8px;
-  margin-top: 10em;
-  padding: 2em;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  background-color: #FFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkmarkOrder {
-  color: #FF6738;
-}
-
-// Order Update Container
-#orderUpdate {
-  visibility: hidden;
-  width: 90%;
-  max-width: 26rem;
-  margin-top: 1em;
-  border-radius: 8px;
-  padding: 2em;
-  box-shadow: 0px 4px 4px 0px #00000040;
-  background-color: #FFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .heading-container {
   cursor: pointer;
   display: flex;
@@ -170,15 +128,6 @@
   margin: 3rem 0 2rem 1rem;
   height: 50px;
   border-radius: 8px;
-}
-
-
-// LOGIN/REGISTER
-.center-align {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 
@@ -372,11 +321,45 @@
 }
 
 
-
 // UserOrder
+.checkmarkOrder {
+  color: #FF6738;
+}
+
+.order-update-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10rem;
+}
+
+.update-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
 .main-user-order {
-  width: 40%;
-  margin-top: 10em;
+  width: 90%;
+  max-width: 26rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  padding: 2em;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Order Update Container
+#orderUpdate {
+  visibility: hidden;
+  width: 90%;
+  max-width: 26rem;
+  margin-top: 1em;
   border-radius: 8px;
   padding: 2em;
   box-shadow: 0px 4px 4px 0px #00000040;
@@ -387,10 +370,6 @@
   align-items: center;
 }
 
-.checkmarkOrder {
-  color: #FF6738;
-  size: 9x;
-}
 
 
 // ADMIN PAGE
