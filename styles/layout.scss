@@ -47,13 +47,14 @@ a:hover {
 .nav-links {
   display: flex;
   justify-content: flex-end;
-  margin-right: 4.5rem;
+  margin-right: 1rem;
   width: 30%;
   list-style-type: none;
 }
 
 .nav-links > * {
   margin: .5rem;
+  cursor: pointer;
 }
 
 .navbarCart {
