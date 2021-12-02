@@ -117,7 +117,7 @@ $(document).ready(function(){
     orders.unshift(order);
     adminOrders.empty();
     const createElements = generateOrders(orders);
-    adminOrders.append = createElements;
+    adminOrders.prepend = createElements;
   });
 
 

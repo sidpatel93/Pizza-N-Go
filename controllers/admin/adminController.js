@@ -1,4 +1,8 @@
-const moment = require('moment')
+const moment = require('moment');
+const sendSMS = require('../../twilioMessage');
+const accountSid = process.env.ACCOUNTSID;
+const authToken = process.env.AUTHTOKEN;
+const client = require("twilio")(accountSid, authToken);
 
 
 function adminController(db) {
@@ -88,7 +92,8 @@ function adminController(db) {
         // on sucessfull order change send the events to particular user
         const eventEmitter = req.app.get('eventEmitter')
         eventEmitter.emit('orderInProgress', {OrderId, estimatedTime})
-        
+        //send sms to customer about the estimated time
+        //sendSMS(`Your order will be ready in approximately ${estimatedTime} mins.`)
         return res.redirect('/admin/orders/new')
       })
       .catch((err) => {
@@ -108,7 +113,8 @@ function adminController(db) {
         //send notification to customer about the order completion here.
         const eventEmitter = req.app.get('eventEmitter')
         eventEmitter.emit('orderComplete', {OrderId})
-
+        //send sms to customer about the estimated time
+        //sendSMS(`Your order is ready for pickup!`)
         return res.redirect('/admin/orders/inProgress')
       })
       .catch((err) => {
@@ -116,27 +122,6 @@ function adminController(db) {
         return res.redirect('/admin/orders/inProgress')
       })
     }
-
-    // orders: (req, res) => {
-    //   // find all the orders that are not completed:
-    //   db.query(`
-    //   select orders.* , users.name as username, users.id as userid, users.phone_number as userphone
-    //   from orders
-    //   join users on orders.user_id = users.id
-    //   where order_status!='completed'
-    //   order by order_time;`)
-    //   .then(data => {
-    //     const  pendingOrders = data.rows 
-    //     console.log("all pending Oeders", pendingOrders)
-    //     res.render('admin/adminOrders', {pendingOrders, moment})
-    //   })
-    //   .catch(err => {
-    //     console.log("Error fetching incomplete orders", err)
-    //   })
-
-    // },
-
-
   }
 }
 

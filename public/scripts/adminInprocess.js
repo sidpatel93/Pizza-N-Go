@@ -22,7 +22,7 @@ $(document).ready(function(){
   const generateSingleOrder = (order) => {
     let orderId = order.id;
     let orderUser =order.username; 
-    let orderTime = order.order_time;
+    let orderTime = moment(order.order_time).format('LLL');
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`

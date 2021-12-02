@@ -1,4 +1,4 @@
-// require twillio
+const sendSMS = require("../../twilioMessage");
 const accountSid = process.env.ACCOUNTSID;
 const authToken = process.env.AUTHTOKEN;
 const client = require("twilio")(accountSid, authToken);
@@ -66,6 +66,8 @@ function cartController(db) {
           eventEmitter.emit('userPlacedOrder', dataToSend)
 
           delete req.session.cart;
+          //Send sms to client about the order placed
+          //sendSMS(`Your order is successfully placed.`)
           return res.redirect('/user/orders')
         })
         .catch((err) => {
@@ -73,22 +75,9 @@ function cartController(db) {
           console.log("can not insert order in db", err)
           return res.redirect('/cart')
         })
-
      }
   }
 
-    // sendOrder: (req, res) => {
-    //   //insert logic here
-    //   console.log("point is hit");
-    //   client.messages
-    //     .create({
-    //       body: "A new order has been submitted",
-    //       from: "+12082188536",
-    //       to: "+14162624439",
-    //     })
-    //     .then((message) => console.log(message.sid));
-    //   res.redirect("/");
-    // },
   };
 
 
