@@ -27,31 +27,31 @@ $(document).ready(function(){
     let orderUserPhone =order.userphone;
 
     let SingleOrderElement = $(`
-    <div class="order-container item">
-  <div class="order-header">
-    <h3>#${orderId} </h3>
-    <p>${orderTime}</p>
-  </div>
+    <div class="order-container item completed">
+      <div class="order-header">
+        <h3>#${orderId} </h3>
+        <p>${orderTime}</p>
+      </div>
 
-  <div class="order-details">
-    <h3>Order</h3>
-    <ul>${listItems(Object.values(order.items))}</ul>
-  </div>
+      <div class="order-details">
+        <h3>Order</h3>
+        <ul>${listItems(Object.values(order.items))}</ul>
+      </div>
 
-  <div class="customer-details no-bottom">
-    <h3>Customer</h3>
-    <ul>
-      <li>
-        <p class="customer-label">Name:</p>
-        <p>${orderUser}</p>
-      </li>
-      <li>
-        <p class="customer-label">Number:</p>
-        <p>${orderUserPhone}</p>
-      </li>
-    </ul>
-  </div>
-</div>
+      <div class="customer-details-completed">
+        <h3>Customer</h3>
+        <ul>
+          <li>
+            <p class="customer-label">Name:</p>
+            <p>${orderUser}</p>
+          </li>
+          <li>
+            <p class="customer-label">Number:</p>
+            <p>${orderUserPhone}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
     `)
 
     return SingleOrderElement

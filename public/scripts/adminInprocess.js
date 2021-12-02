@@ -27,34 +27,37 @@ $(document).ready(function(){
 
     let SingleOrderElement = $(`
     <div class="order-container item">
-      <div class="order-header">
-        <h3>#${orderId} </h3>
-        <p>${orderTime}</p>
-      </div>
+      <aside class="left-order">
+        <div class="order-header">
+          <h3>#${orderId} </h3>
+          <p>${orderTime}</p>
+        </div>
 
-      <div class="order-details">
-        <h3>Order</h3>
-        <ul>${listItems(Object.values(order.items))}</ul>
-      </div>
+        <div class="order-details">
+          <h3>Order</h3>
+          <ul>${listItems(Object.values(order.items))}</ul>
+        </div>
 
-      <div class="customer-details">
-        <h3>Customer</h3>
-        <ul>
-          <li>
-            <p class="customer-label">Name:</p>
-            <p>${orderUser}</p>
-          </li>
-          <li>
-            <p class="customer-label">Number:</p>
-            <p>${orderUserPhone}</p>
-          </li>
-        </ul>
-      </div>
+        <div class="customer-details">
+          <h3>Customer</h3>
+          <ul>
+            <li>
+              <p class="customer-label">Name:</p>
+              <p>${orderUser}</p>
+            </li>
+            <li>
+              <p class="customer-label">Number:</p>
+              <p>${orderUserPhone}</p>
+            </li>
+          </ul>
+        </div>
+    
+      </aside>
 
       <div class="sms-container">
         <form action="/admin/orders/complete" method="POST" id="${orderId}orderComplete">
           <input type="hidden" name="OrderId" value="${orderId}">
-          <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn btn-dark">Order is ready!</a>
+          <a onClick="document.getElementById('${orderId}orderComplete').submit()" class="btn">Order is ready!</a>
         </form>
       </div>
 

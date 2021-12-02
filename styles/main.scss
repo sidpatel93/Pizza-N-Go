@@ -397,12 +397,8 @@
         border-bottom: solid rgba(0, 0, 0, 0.19) 2px;
       }
 
-      & a {
+      & a, & a:hover {
         color: #000;
-
-        &:hover {
-          color: rgba(0, 0, 0, 0.70);
-        }
       }
     }
   }
@@ -415,6 +411,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 4rem;
 }
 
 .order-container {
@@ -439,7 +436,7 @@
   }
 }
 
-.order-details, .customer-details {
+.order-details, .customer-details, .customer-details-completed {
   display: flex;
   flex-direction: column;
   & h3 {
@@ -459,7 +456,9 @@
       }
     }
   }
+}
 
+.order-details, .customer-details {
   &::after {
     content: '';
     margin: 0 0 1rem 0;
@@ -499,3 +498,27 @@
 }
 
 
+// BREAKPOINTS FOR TABLETS AND LARGER
+@media only screen and (min-width: 768px) {
+  .order-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .left-order {
+    width: 80%;
+  }
+
+  .sms-container {
+    margin: 1rem 0 1rem 1rem;
+    align-self: center;
+     & form a {
+       width: 13rem;
+       text-align: center;
+     }
+  }
+
+  .completed {
+    flex-direction: column;
+  }
+}

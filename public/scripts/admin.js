@@ -36,29 +36,32 @@ $(document).ready(function(){
 
     let SingleOrderElement = $(`
       <div class="order-container item">
-        <div class="order-header">
-          <h3>#${orderId} </h3>
-          <p>${orderTime}</p>
-        </div>
+        <aside class="left-order">
+          <div class="order-header">
+            <h3>#${orderId} </h3>
+            <p>${orderTime}</p>
+          </div>
 
-        <div class="order-details">
-          <h3>Order</h3>
-          <ul>${listItems(Object.values(order.items))}</ul>
-        </div>
+          <div class="order-details">
+            <h3>Order</h3>
+            <ul>${listItems(Object.values(order.items))}</ul>
+          </div>
 
-        <div class="customer-details">
-          <h3>Customer</h3>
-          <ul>
-            <li>
-              <p class="customer-label">Name:</p>
-              <p>${orderUser}</p>
-            </li>
-            <li>
-              <p class="customer-label">Number:</p>
-              <p>${orderUserPhone}</p>
-            </li>
-          </ul>
-        </div>
+          <div class="customer-details">
+            <h3>Customer</h3>
+            <ul>
+              <li>
+                <p class="customer-label">Name:</p>
+                <p>${orderUser}</p>
+              </li>
+              <li>
+                <p class="customer-label">Number:</p>
+                <p>${orderUserPhone}</p>
+              </li>
+            </ul>
+          </div>
+        
+        </aside>
 
         <div class="sms-container">
           <form action="/admin/orders/estimatedTime" method="POST" id="${orderId}timeEstimate">
