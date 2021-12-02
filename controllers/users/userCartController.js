@@ -10,8 +10,9 @@ function cartController(db) {
     },
 
     updateCart: (req, res) => {
-      // add an item in the cart
+      //Making the cart start at 0
 
+      // add an item in the cart
       // check if the cart exist in the session
       //if it is not then create the cart
       if (!req.session.cart) {
@@ -46,13 +47,13 @@ function cartController(db) {
         // order details are stored in the session.
         const customerId = req.user.id;
         const items = req.session.cart.foodItems;
-        
+
         //store this order in the database.
         db.query(`INSERT INTO orders (user_id, items)
         VALUES ($1, $2)
         returning *`, [customerId, items])
         .then(data => {
-          // if the order placed successfuly then clear the cart and 
+          // if the order placed successfuly then clear the cart and
           // redirect to customers order page.
           // We might need to add the message notification logic here
           // send events that the order is placed
