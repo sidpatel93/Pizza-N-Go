@@ -12,8 +12,6 @@ function homeController(db) {
     return '/'
   }
 
-
-
   return {
       home: (req, res) => {
         db.query(`SELECT * FROM menuItems;`)
@@ -26,7 +24,6 @@ function homeController(db) {
                 .status(500)
                 .json({ error: err.message });
             });
-     
      },
      
      register: (req, res)=> {
