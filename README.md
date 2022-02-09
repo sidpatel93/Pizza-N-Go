@@ -1,6 +1,6 @@
 # Pizza N Go 
 
-Pizza N Go is a food ordering app that is made for the user and the owner of the restaurant. The user is able to look over the menu, add items to the cart and login or sign up to place the order. On the admin side, the order comes in dinamically and the receiver writes how many minutes until the order is ready. That triggers a text message to the user and a dynamic update on the user side. The admin can also check orders in progress and completed orders. This project is fully responsive for all screen sizes. 
+Pizza N Go is a food ordering app that is made for the user and the owner of the restaurant. The user is able to look over the menu, add items to the cart and login or sign up to place the order. On the admin side, the order comes in dinamically and the receiver writes how many minutes until the order is ready. That triggers a text message to the user and a dynamic update on the user side. The admin can also check orders in progress and completed orders. This project is fully responsive for all screen sizes.
 
 ## Tech Stack
 - Javascript
@@ -12,6 +12,9 @@ Pizza N Go is a food ordering app that is made for the user and the owner of the
 - Design: https://www.figma.com/file/FBqgvdYz3vMUL1E9YTbZyp/Pizza-n-go?node-id=1109%3A1908
 
 ## Screenshots
+
+
+!["screenshot description"](https://github.com/sidpatel93/Pizza-N-Go/blob/master/screenshots/3Devices.png)
 
 Landing page:
 
